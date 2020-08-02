@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from account.models import User
 from django.utils.timezone import now
 
 # Create your models here.
@@ -24,3 +24,13 @@ class Comment(models.Model):
     owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name="댓글 소유자")
     make_date = models.DateTimeField(default=now, verbose_name="작성일")
     modifiy_date = models.DateTimeField(null=True, verbose_name="최근 수정일")
+    deleted_date = models.DateTimeField(null=True, verbose_name="삭제일")
+
+
+class Sympathy(models.Model):
+    post_id = models.ForeignKey(Document, on_delete=models.CASCADE, null=True, verbose_name="게시물 번호")
+    comment_id = models.ForeignKey(Comment, on_delete=models.CASCADE, null=True, verbose_name="댓글 번호")
+    owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name="공감 소유자")
+    content = models.TextField(max_length=10, null=False, verbose_name="공감 내용(이모티콘)")
+    date = models.DateTimeField(default=now, verbose_name="공감 일")
+
