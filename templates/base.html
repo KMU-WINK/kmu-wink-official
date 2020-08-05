@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/fonts.css">
+</head>
+<body>
+    <header id="main_header">
+        <div class="container">
+            <h1 class="logo">
+                <img src="/static/assets/logo/wink-white.png" alt="Web in Kookmin">
+            </h1>
+            <nav id="main_menu">
+                <ul>
+                    <li class="active"><a href="">WINK 소개</a></li>
+                    <li><a href="">프로젝트</a></li>
+                    <li><a href="">[회원만 보이게 하기] 게시판</a></li>
+                    <li><a href="">로그인</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        {% block container %}
+        {% endblock %}
+    </main>
+</body>
+</html>

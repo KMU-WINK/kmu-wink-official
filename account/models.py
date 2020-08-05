@@ -2,29 +2,39 @@ from django.contrib.auth.models import AbstractBaseUser,BaseUserManager,Permissi
 from django.db import models
 from django.utils.timezone import now
 
-
 # Create your models here.
 
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
-    def create_user(self, email, nickname, password=None):
+    def create_user(self, email, password, date_of_birth, name, student_number, department, position, graduation_date):
         if not email:
             raise ValueError('must have user email')
         user = self.model(
             email=self.normalize_email(email),
-            nickname=nickname
+            date_of_birth=date_of_birth,
+            name=name,
+            student_number=student_number,
+            department=department,
+            position=position,
+            graduation_date=graduation_date
         )
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, nickname, password):
+    def create_superuser(self, email, password, date_of_birth, name, student_number, department, position, graduation_date):
+        print(email, password, date_of_birth, name, student_number, department, position, graduation_date);
         user = self.create_user(
             email=self.normalize_email(email),
-            nickname=nickname,
-            password=password
+            password=password,
+            date_of_birth=date_of_birth,
+            name=name,
+            student_number=student_number,
+            department=department,
+            position=position,
+            graduation_date=graduation_date
         )
         user.is_admin = True
         user.is_superuser = True
@@ -51,4 +61,4 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['date_of_birth']
+    REQUIRED_FIELDS = ['date_of_birth', 'name', 'student_number', 'department', 'position', 'graduation_date']
