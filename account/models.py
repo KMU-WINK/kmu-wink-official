@@ -55,8 +55,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     payment = models.BooleanField(null=False, default=False, verbose_name="회비 납부 여부")
     profile_thumbnail = models.FilePathField(null=True, verbose_name="프로필 사진")
     description = models.CharField(max_length=300, null=True, verbose_name="자기소개")
+    github_url = models.URLField(null=True, verbose_name="깃허브 주소")
+    instagram_url = models.URLField(null=True, verbose_name="인스타그램 주소")
+    website_url = models.URLField(null=True, verbose_name="웹 사이트 주소")
     is_active = models.BooleanField(default=True, verbose_name="회원 활성 여부")
     is_admin = models.BooleanField(default=False, verbose_name="관리자 여부")
+    is_staff = models.BooleanField(default=False, verbose_name="간부 여부")
 
     objects = UserManager()
 
