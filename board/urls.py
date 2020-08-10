@@ -5,5 +5,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('<str:board_name>', views.board, name='board')
+    path('<str:board_name>', views.board, name='board'),
+    path('<str:board_name>/<int:document_id>', views.document, name='document'),
 ]

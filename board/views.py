@@ -5,14 +5,7 @@ from .models import Board, Document
 
 # Create your views here.
 
-# 게시판 메인페이지
-def index(request):
-
-    return render(request, 'board_list.html')
-
-
-def board(request, board_name):
-    # board_name으로 게시판 가져오기
+def getBoard(board_name):
     board_information = get_object_or_404(Board, board_code=board_name).__dict__
 
     try:
@@ -20,15 +13,32 @@ def board(request, board_name):
     except:
         documents = []
 
-    return render(request, 'board_skin/board.html', {
+    return  {
         'board': {
             'information': board_information,
             'documents': documents,
         }
-    })
+    }
 
 
+# 게시판 메인페이지
+def index(request):
 
+    return render(request, 'board_list.html')
+
+
+def board(request, board_name):
+
+    return render(request, 'board_skin/board.html', getBoard(board_name))
+
+def document(request, board_name, document_id):
+    rend_data = getBoard(board_name)
+
+    rend_data['document'] = Document.objects.get(id=document_id)
+
+    print(document)
+
+    return render(request, 'board_skin/document.html', rend_data)
 
 # 메인페이지
 def main_index(request):

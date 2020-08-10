@@ -6,11 +6,27 @@
     </div>
 
 
+
     <div class="container">
         <header>
             <h1>{{ board.information.name }}</h1>
             <p>{{ board.information.description }}</p>
         </header>
+        <section class="document">
+            <div class="document_info">
+                <h1><a href="{% url 'document' board_name='recruitment' document_id=document.id %}">{{ document.title }}</a></h1>
+                <ul>
+                    <li>{{ document.make_date }}</li>
+                    {% if document.modifiy_date %}
+                        <li>{{ document.modifiy_date }}</li>
+                    {% endif %}
+                    <li>{{ document.owner.student_number}} {{ document.owner.name }}</li>
+                </ul>
+            </div>
+            <div class="content">
+                {{ document.content }}
+            </div>
+        </section>
         <section>
             <div>
 

@@ -5,3 +5,11 @@ border-collapse: collapse;
 }
 .board thead tr th {height:100px; font-size:24px;}
 .board tbody tr td {height:100px; border-bottom: 1px solid #ddd; font-size:24px;}
+
+.document .document_info h1 {font-size:60px; text-align:center;}
+.document .document_info h1 a {color: #333; text-decoration:none;}
+.document .document_info {border-bottom: 1px solid #333; padding:50px 0;}
+.document .document_info ul {text-align:center; margin-top:30px;}
+.document .document_info ul li {display:inline-block; margin-left:30px;}
+.document .document_info ul li:first-child {margin-left:0;}
+.document .content {padding:50px 0;}
