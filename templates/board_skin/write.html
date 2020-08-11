@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block container %}
+    <div id="sub_banner" style="background-image:url('/static/images/article/IMG_2594.jpg')">
+        <h1><b>W</b>eb <b>I</b><b>N</b> <b>K</b>ookmin</h1>
+    </div>
+    <div class="container">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="등록">
+        </form>
+    </div>
+
+{% endblock %}

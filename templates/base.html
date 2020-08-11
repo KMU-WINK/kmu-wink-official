@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/fonts.css">
+
+    <link rel="stylesheet" href="/static/css/board.css">
+
+
+    {% if request.path != "/" %}
+        <script src="/static/js/sub_banner.js"></script>
+    {% endif %}
+</head>
+<body>
+    <header id="main_header">
+        <div class="container">
+            <h1 class="logo">
+                <a href="/"><img src="/static/assets/logo/wink-white.png" alt="Web in Kookmin"></a>
+            </h1>
+            <nav id="main_menu">
+                <ul>
+                    <li class="active"><a href="">WINK</a></li>
+                    <li><a href="">PROJECT</a></li>
+                    <li><a href="{% url 'board' board_name='recruitment' %}">모집공고</a></li>
+                    <li><a href="">로그인</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        {% block container %}
+        {% endblock %}
+    </main>
+</body>
+</html>

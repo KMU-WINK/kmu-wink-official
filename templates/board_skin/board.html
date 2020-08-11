@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block container %}
+
+    <div id="sub_banner" style="background-image:url('/static/images/article/IMG_2594.jpg')">
+        <h1><b>W</b>eb <b>I</b><b>N</b> <b>K</b>ookmin</h1>
+    </div>
+
+
+    <div class="container">
+        <header>
+            <h1>{{ board.information.name }}</h1>
+            <p>{{ board.information.description }}</p>
+        </header>
+        <section>
+            <div>
+                <a href="{% url 'write' board_name=board.information.board_code %}" class="btn primary">글쓰기</a>
+            </div>
+            <table class="board">
+                <thead>
+                    <tr>
+                        <th>번호</th> <th>제목</th> <th>작성자</th> <th>날짜</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in board.documents %}
+                        <tr>
+                            <td>{{ item.id }}</td> <td><a href="{% url 'document' board_name='recruitment' document_id=item.id %}">{{ item.title }}</a></td> <td>{{ item.owner.student_number }} {{ item.owner.name }}</td> <td>{{ item.make_date }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+    </div>
+
+{% endblock %}

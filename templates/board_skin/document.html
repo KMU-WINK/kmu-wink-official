@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block container %}
+
+    <div id="sub_banner" style="background-image:url('/static/images/article/IMG_2594.jpg')">
+        <h1><b>W</b>eb <b>I</b><b>N</b> <b>K</b>ookmin</h1>
+    </div>
+
+
+
+    <div class="container">
+        <header>
+            <h1>{{ board.information.name }}</h1>
+            <p>{{ board.information.description }}</p>
+        </header>
+        <section class="document">
+            <div class="document_info">
+                <h1><a href="{% url 'document' board_name='recruitment' document_id=document.id %}">{{ document.title }}</a></h1>
+                <ul>
+                    <li>{{ document.make_date }}</li>
+                    {% if document.modifiy_date %}
+                        <li>{{ document.modifiy_date }}</li>
+                    {% endif %}
+                    <li>{{ document.owner.student_number}} {{ document.owner.name }}</li>
+                </ul>
+            </div>
+            <div class="content">
+                {{ document.content }}
+            </div>
+        </section>
+        <section class="comments">
+            <div class="comment_counter">댓글 {{ comment.comments.count }}개</div>
+            {% for item in comment.comments %}
+                <article class="comment">
+                    <div class="commenter">{{ item.owner.student_number }} {{ item.owner.name }}</div>
+
+                    <div class="content">{{ item.content }}</div>
+                    {{ item.make_date }}
+                </article>
+            {% endfor %}
+            <article>
+                <a href=""></a>
+            </article>
+                {% if comment.form %}
+                <form action="" method="post">
+                    {% csrf_token %}
+
+                    {{ comment.form.as_p }}
+                    <input type="submit" value="등록">
+                </form>
+                {% else %}
+                    <p class="anonymous_msg"><a href="">로그인</a> 후 댓글을 작성할 수 있습니다.</p>
+                {% endif %}
+        </section>
+        <section class="board_section">
+            <table class="board">
+                <thead>
+                    <tr>
+                        <th>번호</th> <th>제목</th> <th>작성자</th> <th>날짜</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in board.documents %}
+                        <tr>
+                            <td>{{ item.id }}</td> <td><a href="{% url 'document' board_name='recruitment' document_id=item.id %}">{{ item.title }}</a></td> <td>{{ item.owner.student_number }} {{ item.owner.name }}</td> <td>{{ item.make_date }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+    </div>
+
+{% endblock %}

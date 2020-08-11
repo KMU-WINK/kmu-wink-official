@@ -2,29 +2,39 @@ from django.contrib.auth.models import AbstractBaseUser,BaseUserManager,Permissi
 from django.db import models
 from django.utils.timezone import now
 
-
 # Create your models here.
 
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
-    def create_user(self, email, nickname, password=None):
+    def create_user(self, email, password, date_of_birth, name, student_number, department, position, graduation_date):
         if not email:
             raise ValueError('must have user email')
         user = self.model(
             email=self.normalize_email(email),
-            nickname=nickname
+            date_of_birth=date_of_birth,
+            name=name,
+            student_number=student_number,
+            department=department,
+            position=position,
+            graduation_date=graduation_date
         )
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, nickname, password):
+    def create_superuser(self, email, password, date_of_birth, name, student_number, department, position, graduation_date):
+        print(email, password, date_of_birth, name, student_number, department, position, graduation_date);
         user = self.create_user(
             email=self.normalize_email(email),
-            nickname=nickname,
-            password=password
+            password=password,
+            date_of_birth=date_of_birth,
+            name=name,
+            student_number=student_number,
+            department=department,
+            position=position,
+            graduation_date=graduation_date
         )
         user.is_admin = True
         user.is_superuser = True
@@ -45,10 +55,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     payment = models.BooleanField(null=False, default=False, verbose_name="회비 납부 여부")
     profile_thumbnail = models.FilePathField(null=True, verbose_name="프로필 사진")
     description = models.CharField(max_length=300, null=True, verbose_name="자기소개")
+    github_url = models.URLField(null=True, verbose_name="깃허브 주소")
+    instagram_url = models.URLField(null=True, verbose_name="인스타그램 주소")
+    website_url = models.URLField(null=True, verbose_name="웹 사이트 주소")
     is_active = models.BooleanField(default=True, verbose_name="회원 활성 여부")
     is_admin = models.BooleanField(default=False, verbose_name="관리자 여부")
+    is_staff = models.BooleanField(default=False, verbose_name="간부 여부")
 
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['date_of_birth']
+    REQUIRED_FIELDS = ['date_of_birth', 'name', 'student_number', 'department', 'position', 'graduation_date']
