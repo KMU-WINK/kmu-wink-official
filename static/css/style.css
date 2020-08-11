@@ -138,7 +138,7 @@ body, ul, li, h1,h2,h3,h4,h5,h6 {
 	/*background-size: 4px 4px;*/
 }
 
-#sub_banner {display:flex; justify-content: center; align-items: center;}
+#sub_banner {display:flex; justify-content: center; align-items: center; margin-bottom:50px}
 
 #sub_banner h1 {
     font-size:48px;
@@ -154,3 +154,8 @@ body, ul, li, h1,h2,h3,h4,h5,h6 {
 #sub_banner b:nth-child(2) {color:rgb(236, 38, 61);}
 #sub_banner b:nth-child(3) {color:rgb(242, 170, 24);}
 #sub_banner b:nth-child(4) {color:rgb(65, 224, 37);}
+
+
+.btn {font-size:20px; padding:15px; background: #7d7d7d; color:white; text-decoration: none; border-radius:5px; transition: .3s;}
+.btn.primary {background: #399bdd;}
+.btn.primary:hover {background:#2872DD;}

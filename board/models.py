@@ -28,8 +28,10 @@ class Comment(models.Model):
     re_id = models.ForeignKey('self', on_delete=models.CASCADE, null=True, verbose_name="대댓글 대상")
     owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name="댓글 소유자")
     make_date = models.DateTimeField(default=now, verbose_name="작성일")
+    content = models.TextField(null=False, blank=True, verbose_name="내용")
     modifiy_date = models.DateTimeField(null=True, verbose_name="최근 수정일")
     deleted_date = models.DateTimeField(null=True, verbose_name="삭제일")
+    ip = models.GenericIPAddressField(null=True, verbose_name="작성자 IP")
 
 
 class Sympathy(models.Model):

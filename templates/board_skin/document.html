@@ -27,10 +27,31 @@
                 {{ document.content }}
             </div>
         </section>
-        <section>
-            <div>
+        <section class="comments">
+            <div class="comment_counter">댓글 {{ comment.comments.count }}개</div>
+            {% for item in comment.comments %}
+                <article class="comment">
+                    <div class="commenter">{{ item.owner.student_number }} {{ item.owner.name }}</div>
 
-            </div>
+                    <div class="content">{{ item.content }}</div>
+                    {{ item.make_date }}
+                </article>
+            {% endfor %}
+            <article>
+                <a href=""></a>
+            </article>
+                {% if comment.form %}
+                <form action="" method="post">
+                    {% csrf_token %}
+
+                    {{ comment.form.as_p }}
+                    <input type="submit" value="등록">
+                </form>
+                {% else %}
+                    <p class="anonymous_msg"><a href="">로그인</a> 후 댓글을 작성할 수 있습니다.</p>
+                {% endif %}
+        </section>
+        <section class="board_section">
             <table class="board">
                 <thead>
                     <tr>
