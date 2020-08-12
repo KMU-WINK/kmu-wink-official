@@ -85,3 +85,8 @@ def document(request, board_name, document_id):
 # 메인페이지
 def main_index(request):
     return render(request, 'index.html')
+
+
+def sympathy(request, ):
+    if request.method == "POST" and request.user.id:
+        request.POST['content']
