@@ -20,6 +20,7 @@ class Document(models.Model):
     modifiy_date = models.DateTimeField(null=True, blank=True, verbose_name="최근 수정일")
     deleted_date = models.DateTimeField(null=True, blank=True, verbose_name="삭제일")
     owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name="게시물 소유자")
+    file = models.FileField()
     def __str__(self):
         return str(self.title)
 

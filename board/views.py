@@ -7,6 +7,7 @@ from .models import Board, Document, Comment
 # Create your views here.
 
 def getBoard(board_name):
+    # 게시판 정보 가져오기. 만약 게시판이 존재하지 않다면 404에러를 반환함
     board_information = get_object_or_404(Board, board_code=board_name).__dict__
 
     try:
@@ -37,7 +38,8 @@ def index(request):
 
 
 def board(request, board_name):
-
+    print(board_name) # params 가져오기 -> http://127.0.0.1/test_board
+    # 출력 결과 test_board
     return render(request, 'board_skin/board.html', getBoard(board_name))
 
 
