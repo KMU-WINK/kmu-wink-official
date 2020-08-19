@@ -3,3 +3,23 @@ os: linux
 files:
   - source:  /
     destination: /home/ubuntu/wink-official/
+#hooks:
+#  BeforeInstall:
+#    - location: scripts/resetting.sh
+#      timeout: 60
+#      runas: ubuntu
+#  AfterInstall:
+#    - location: scripts/dependency.sh
+#      timeout: 300
+#      runas: ubuntu
+#    - location: scripts/setting.sh
+#      timeout: 300
+#      runas: ubuntu
+#  ApplicationStart:
+#    - location: scripts/deploy.sh
+#      timeout: 60
+#      runas: ubuntu
+#  ValidateService:
+#    - location: scripts/healthCheck.sh
+#      timeout: 60
+#      runas: ubuntu
