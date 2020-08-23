@@ -2,11 +2,14 @@
 .member_section {
     display:grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 50px;
 }
 
 .member_section .card_section {
     display:grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
 }
 
 .member_section h1 {font-family: var(--hansans); color:var(--black); padding:20px;}

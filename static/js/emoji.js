@@ -28,6 +28,15 @@ for(let i = 0; i < emojis.length; i++)
         case ':beer:':
             emojis[i].innerHTML = '🍺️';
             break;
+        case ':stuck_out_tongue_winking_eye:':
+            emojis[i].innerHTML = '😜';
+            break;
+        case ':symbols_over_mouth:':
+            emojis[i].innerHTML = '🤬';
+            break;
+        case ':fire:':
+            emojis[i].innerHTML = '🔥';
+            break;
     }
 }
 
