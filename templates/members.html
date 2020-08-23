@@ -1,6 +1,17 @@
 {% extends 'base.html' %}
 {% block container %}
     {% include 'component/banner.html' %}
+        <section class="container member_section">
+        <div>
+            <h1>지도교수</h1>
+            <div class="card_section">
+                {% for item in profesor %}
+                    {% include 'component/human_card.html' %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
     <section class="container member_section">
         <div>
             <h1>간부진</h1>
@@ -25,6 +36,9 @@
         <div>
             <h1>역대 회장단</h1>
             <div class="card_section">
+                {% for item in prev_staff %}
+                    {% include 'component/human_card.html' %}
+                {% endfor %}
 
             </div>
         </div>
@@ -32,6 +46,9 @@
         <div>
             <h1>졸업생 선배님들</h1>
             <div class="card_section">
+                {% for item in prev_member %}
+                    {% include 'component/human_card.html' %}
+                {% endfor %}
 
             </div>
         </div>

@@ -36,24 +36,26 @@ def member_data_fetch(queryset):
             'website_url': x.website_url,
             'github': github,
             'emoji': em,
+            'prev_position':x.prev_position,
         })
     return answer
 
 def members(request):
-    # print(get_user_profile('bell2lee')['avatar_url'])
-    staff = member_data_fetch(User.objects.filter(is_staff=True).order_by('-position'))
-    member = member_data_fetch(User.objects.filter(is_staff=False, prev_position__isnull=True).order_by('student_number'))
-    prev_staff = member_data_fetch(User.objects.filter(prev_position=None).order_by('student_number'))
-    # prev_member = member_data_fetch(User.objects.filter(is_staff=False, prev_position__isnull=True).order_by('student_number'))
-    # todays_pages = Page.objects.filter(date_created__gte=datetime.date.now()
-    print(staff[0]['github'])
-    print(staff)
+    from datetime import date
+    today = date.today()
+
+    profesor = member_data_fetch(User.objects.filter(position=20).order_by('-position'))
+    staff = member_data_fetch(User.objects.filter(is_staff=True, position__lt=20).order_by('-position'))
+    member = member_data_fetch(User.objects.filter(is_staff=False, position__lt=20, graduation_date__gte=today, prev_position__isnull=True).order_by('student_number'))
+    prev_staff = member_data_fetch(User.objects.filter(graduation_date__lte=today, position__lt=20, prev_position__isnull=False).order_by('prev_position'))
+    prev_member = member_data_fetch(User.objects.filter(graduation_date__lte=today, position__lt=20, prev_position__isnull=True).order_by('student_number'))
 
     return render(request, 'members.html', {
         'staff': staff,
         'member': member,
         'prev_staff': prev_staff,
-        'prev_member': prev_staff,
+        'prev_member': prev_member,
+        'profesor':profesor,
     })
 
 

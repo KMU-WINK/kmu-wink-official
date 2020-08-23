@@ -43,6 +43,7 @@ class UserManager(BaseUserManager):
         return user
 
 POSITION_CHOICE = [
+    (20, '지도 교수'),
     (12, '이전 회장'),
     (11, '이전 부회장'),
     (10, '이전 간부'),

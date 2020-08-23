@@ -5,9 +5,14 @@
             <ul>
                 <li class="name">{{ item.student_num }}학번 {{ item.name }}</li>
 
-                {% if item.position %}
-                <li>{{ item.position }}</li>
+                {% if item.prev_position %}
+                    <li>{{ item.prev_position }}</li>
+                {% else %}
+                    {% if item.position %}
+                    <li>{{ item.position }}</li>
+                    {% endif %}
                 {% endif %}
+
 
                 {% if item.description %}
                 <li>{{ item.description }}</li>
