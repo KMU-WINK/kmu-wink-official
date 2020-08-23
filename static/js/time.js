@@ -21,7 +21,7 @@ function timeForToday(value) {
         return `${Math.floor(betweenTimeDay / 365)}년전`;
  }
 
- function refresh_time(){
+function refresh_time(){
     let times = document.querySelectorAll(".time");
 
     for (let i = 0; i < times.length; i++)
@@ -29,10 +29,7 @@ function timeForToday(value) {
         times[i].innerHTML = timeForToday(times[i].getAttribute("data-time") * 1000);
     }
     console.log(1);
- }
+}
 
-
-window.onload = () => {
-    refresh_time();
-    timer = setInterval(refresh_time, 5000);
-};
+refresh_time();
+timer = setInterval(refresh_time, 5000);

@@ -85,6 +85,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     student_number = models.IntegerField(unique=True, null=False, verbose_name="학번")
     department = models.CharField(max_length=20, null=False, verbose_name="학과")
     position = models.IntegerField(null=False, default=0, choices=POSITION_CHOICE, verbose_name="직책")
+    prev_position = models.CharField(max_length=30, null=True, blank=True, verbose_name="이전 직책")
     join_date = models.DateTimeField(default=now, verbose_name="가입일")
     date_of_birth = models.DateField(null=False, verbose_name="생년월일")
     graduation_date = models.DateField(null=False, verbose_name="졸업(예정)일")
@@ -97,6 +98,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True, verbose_name="회원 활성 여부")
     is_admin = models.BooleanField(default=False, verbose_name="관리자 여부")
     is_staff = models.BooleanField(default=False, verbose_name="간부 여부")
+
 
     objects = UserManager()
 
