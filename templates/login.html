@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block container %}
+{% include 'component/banner.html' %}
+
+<div class="container">
+    <div class="form_box">
+        <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {% include "form_error.html" %}
+        <div>
+            <label for="username">이메일</label>
+            <input type="text" name="username" id="username"
+                   value="{{ form.username.value|default_if_none:'' }}">
+        </div>
+        <div>
+            <label for="password">비밀번호</label>
+            <input type="password" name="password" id="password"
+                   value="{{ form.password.value|default_if_none:'' }}">
+        </div>
+        <button type="submit" class="btn btn-primary">로그인</button>
+    </form>
+    </div>
+    <div class="member_link">
+            윙크 동아리 신입 부원인가요? <a href="{% url 'signup' %}">회원가입</a>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,8 +1,11 @@
-from django.shortcuts import render
-from .models import User
-import json, requests
+from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from .models import User, Emoji
+from .forms import SignUpForm
+import json, requests, emoji
 from datetime import datetime
 from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -16,15 +19,14 @@ def get_user_profile(username):
 def member_data_fetch(queryset):
     answer = []
     for x in queryset:
-
-        #
         github = {}
+        em = Emoji.objects.filter(user=x)
 
         if x.github_url:
             github = get_user_profile(x.github_url.split('/')[-1])
             github['updated_at'] = int(datetime.strptime(github['updated_at'], '%Y-%m-%dT%H:%M:%SZ').timestamp())
-        print(github['updated_at'])
         answer.append({
+            'id': x.id,
             'student_num' : str(x.student_number)[2:4],
             'name': x.name,
             'description': x.description,
@@ -33,17 +35,55 @@ def member_data_fetch(queryset):
             'instagram_url': x.instagram_url,
             'website_url': x.website_url,
             'github': github,
+            'emoji': em,
         })
     return answer
 
 def members(request):
     # print(get_user_profile('bell2lee')['avatar_url'])
     staff = member_data_fetch(User.objects.filter(is_staff=True).order_by('-position'))
-    member = member_data_fetch(User.objects.filter(is_staff=False).order_by('student_number'))
+    member = member_data_fetch(User.objects.filter(is_staff=False, prev_position__isnull=True).order_by('student_number'))
+    prev_staff = member_data_fetch(User.objects.filter(prev_position=None).order_by('student_number'))
+    # prev_member = member_data_fetch(User.objects.filter(is_staff=False, prev_position__isnull=True).order_by('student_number'))
+    # todays_pages = Page.objects.filter(date_created__gte=datetime.date.now()
     print(staff[0]['github'])
     print(staff)
 
     return render(request, 'members.html', {
         'staff': staff,
         'member': member,
+        'prev_staff': prev_staff,
+        'prev_member': prev_staff,
     })
+
+
+def signup(request):
+    signup_form = SignUpForm()
+
+    if request.method == "POST": # 만약 POST면
+        signup_form = SignUpForm(request.POST) # 전달받은 값을 폼에 넣어 객체를 만듬
+        if signup_form.is_valid(): # 필드들이 각 필드 형식에 맞는가 ?
+            post = signup_form.save(commit=False) # 폼 데이터 저장
+            # 서버측에서 처리할 것 들
+            post.set_password(request.POST['password'])
+            post.save() # 저장
+            return redirect('/member/login/')
+
+    return render(request, 'signup.html', {
+        'form': signup_form,
+    })
+
+@csrf_exempt
+def emoji(request):
+    data = json.loads(request.body)
+
+    ne = Emoji(user_id=data['user'], content=data['content'], owner=request.user)
+    ne.save()
+
+    return JsonResponse({
+        'message': 'ok',
+    }, json_dumps_params={'ensure_ascii': True})
+
+def profile(request):
+    pass
+    # signup

@@ -24,25 +24,3 @@ border-collapse: collapse;
 .anonymous_msg {font-size:30px; text-align: center;}
 
 .board_section {margin-top:120px; border-top:1px solid #ddd;}
-
-
-
-input[type='text'], textarea {
-    border:none;
-    padding:15px;
-    background: #eee;
-    transition: .3s;
-    outline: none;
-    border-radius:5px;
-    color: #333333;
-    font-size:24px;
-    width:100%;
-}
-
-input[type='text']:hover, textarea:hover {
-    background: #f8f8f8;
-}
-
-input[type='text']:focus, textarea:focus {
-    background: #f8f8f8;
-}

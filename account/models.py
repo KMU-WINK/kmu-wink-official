@@ -42,25 +42,6 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-
-'''
-필터 정의
-12 이전 회장
-11 이전 부회장
-10 이전 간부
-9 회장
-8 부회장
-7 서기
-6 총무 부장
-5 운영 부장
-4 기획 부장
-6 총무 차장
-3 운영 차장
-2 기획 차장
-1 회원 (부원)
-0 비 로그인
-'''
-
 POSITION_CHOICE = [
     (12, '이전 회장'),
     (11, '이전 부회장'),
@@ -83,7 +64,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=255, unique=True, verbose_name="이메일")
     name = models.CharField(max_length=20, null=False, verbose_name="이름")
     student_number = models.IntegerField(unique=True, null=False, verbose_name="학번")
-    department = models.CharField(max_length=20, null=False, verbose_name="학과")
+    department = models.CharField(max_length=20, null=False, verbose_name="학과", default="software")
     position = models.IntegerField(null=False, default=0, choices=POSITION_CHOICE, verbose_name="직책")
     prev_position = models.CharField(max_length=30, null=True, blank=True, verbose_name="이전 직책")
     join_date = models.DateTimeField(default=now, verbose_name="가입일")
@@ -104,3 +85,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['date_of_birth', 'name', 'student_number', 'department', 'position', 'graduation_date']
+
+
+class Emoji(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='related_user', verbose_name="공감 대상")
+    owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='related_owner', verbose_name="공감 소유자")
+    content = models.CharField(max_length=100, null=False, verbose_name="공감 내용(이모티콘)")
+    date = models.DateTimeField(default=now, verbose_name="공감 일")

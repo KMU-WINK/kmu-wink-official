@@ -6,58 +6,17 @@
             <h1>간부진</h1>
             <div class="card_section">
                 {% for item in staff %}
-                    <div class="human">
-                        <div class="human_container">
-                            <div class="profile_img"><img src="{{ item.github.avatar_url }}" alt=""></div>
-                            <div class="information">
-                                <ul>
-                                    <li class="name">{{ item.student_num }}학번 {{ item.name }}</li>
-
-                                    {% if item.position %}
-                                    <li>{{ item.position }}</li>
-                                    {% endif %}
-
-                                    {% if item.description %}
-                                    <li>{{ item.description }}</li>
-                                    {% endif %}
-
-                                    {% if item.github_url %}
-                                    <li>
-                                        <a href="{{ item.github_url }}" target="_blank" class="btn">
-                                            <i class="xi-github"></i>
-                                            GitHub.com
-                                        </a>
-                                    </li>
-                                    {% endif %}
-
-                                    {% if item.website_url %}
-                                    <li>
-                                        <a href="{{ item.website_url }}" target="_blank" class="btn">
-                                            <i class="xi-home"></i>
-                                            개인 웹 사이트
-                                        </a>
-                                    </li>
-                                    {% endif %}
-
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="github">
-                            Last contributions : <span class="time" data-time="{{ item.github.updated_at }}"></span>
-                            <div>
-
-                            </div>
-                            </ul>
-                        </div>
-                    </div>
+                    {% include 'component/human_card.html' %}
                 {% endfor %}
             </div>
         </div>
 
         <div>
             <h1>부원</h1>
-            <div>
-
+            <div class="card_section">
+                {% for item in member %}
+                    {% include 'component/human_card.html' %}
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -65,14 +24,14 @@
     <section class="container member_section">
         <div>
             <h1>역대 회장단</h1>
-            <div>
+            <div class="card_section">
 
             </div>
         </div>
 
         <div>
             <h1>졸업생 선배님들</h1>
-            <div>
+            <div class="card_section">
 
             </div>
         </div>

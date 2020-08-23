@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/static/css/board.css">
     <link rel="stylesheet" href="/static/css/member.css">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+
 </head>
 <body>
     <header id="main_header">
@@ -22,7 +23,23 @@
                     <li class="active"><a href="{% url 'members' %}">Organization</a></li>
                     <li><a href="{% url 'board' board_name='project' %}">PROJECT</a></li>
                     <li><a href="{% url 'board' board_name='recruitment' %}">모집공고</a></li>
-                    <li><a href="">로그인</a></li>
+
+                    <li>
+                        {% if user.is_authenticated %}
+                        <a href="#">
+                            {{ user.student_number }} {{ user.name }}
+                            <ul>
+                                <li><a href="{% url 'profile' student_number='dd' %}"></a></li>
+                                {% if user.is_staff %}
+                                <li><a href="/admin/" target="_blank">관리자페이지</a></li>
+                                {% endif %}
+                                <li><a href="{% url 'logout' %}">로그아웃</a></li>
+                            </ul>
+                        </a>
+                        {% else %}
+                        <a href="{% url 'login' %}">로그인</a>
+                        {% endif %}
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -31,7 +48,18 @@
         {% block container %}
         {% endblock %}
     </main>
-    <script src="/static/js/time.js"></script>
+    <footer id="main_footer">
+        <div class="container">
+            <div class="together">
+                <h1>Together</h1>
+                <ul>
+                    <li><img src="/static/images/footer/kookmin_logo_black.png" alt="국민대학교 소프트웨어융합대학"></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 
+    <script src="/static/js/time.js"></script>
+    <script src="/static/js/emoji.js"></script>
 </body>
 </html>

@@ -1,0 +1,71 @@
+<div class="human">
+    <div class="human_container">
+        <div class="profile_img"><img src="{{ item.github.avatar_url }}" alt=""></div>
+        <div class="information">
+            <ul>
+                <li class="name">{{ item.student_num }}학번 {{ item.name }}</li>
+
+                {% if item.position %}
+                <li>{{ item.position }}</li>
+                {% endif %}
+
+                {% if item.description %}
+                <li>{{ item.description }}</li>
+                {% endif %}
+
+                {% if item.github_url %}
+                <li>
+                    <a href="{{ item.github_url }}" target="_blank" class="btn">
+                        <i class="xi-github"></i>
+                        GitHub.com
+                    </a>
+                </li>
+                {% endif %}
+
+                {% if item.website_url %}
+                <li>
+                    <a href="{{ item.website_url }}" target="_blank" class="btn">
+                        <i class="xi-home"></i>
+                        개인 웹 사이트
+                    </a>
+                </li>
+                {% endif %}
+
+            </ul>
+        </div>
+    </div>
+    <div class="github">
+        Last contributions : <span class="time" data-time="{{ item.github.updated_at }}"></span>
+        <div class="user_emojis">
+            <ul>
+                {% for emoji in item.emoji %}
+                        <li class="emoji">{{ emoji.content }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% if user.is_authenticated %}
+            <div>
+                <button class="btn" onclick="this.parentNode.children[1].style.display='block'">공감 남기기</button>
+                <div class="emoji_modal">
+                    <h1>WINK EMOJI PICKER</h1>
+                    <ul data-user-id="{{ item.id }}">
+                        <li data-char=":heart:">❤️</li>
+                        <li data-char=":see_no_evil:">🙈️</li>
+                        <li data-char=":smiling_imp:">👿️</li>
+                        <li data-char=":kissing_heart:">️😘</li>
+                        <li data-char=":+1:">👍️</li>
+                        <li data-char=":-1:">👎️</li>
+                        <li data-char=":fu:">🖕</li>
+                        <li data-char=":beer:">🍺️</li>
+                    </ul>
+                    <div style="text-align:right;">
+                        <button onclick="this.parentNode.style.display='none'" class="btn">닫기</button>
+
+                    </div>
+                </div>
+            </div>
+
+        {% endif %}
+
+    </div>
+</div>
