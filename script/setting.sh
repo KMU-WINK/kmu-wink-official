@@ -8,8 +8,8 @@ directory="/home/ubuntu/development"
 sudo python3 -m venv /home/ubuntu/wink-official/venv
 source /home/ubuntu/wink-official/venv/bin/activate
 
-sudo pip3 install --upgrade pip
-sudo pip3 install -r /home/ubuntu/wink-official/requirements.txt
+pip install --upgrade pip
+pip install -r /home/ubuntu/wink-official/requirements.txt
 
 cp /home/ubuntu/settings.py /home/ubuntu/wink-official/settings.py
 

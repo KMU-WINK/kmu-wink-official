@@ -43,21 +43,57 @@ class UserManager(BaseUserManager):
         return user
 
 
+'''
+필터 정의
+12 이전 회장
+11 이전 부회장
+10 이전 간부
+9 회장
+8 부회장
+7 서기
+6 총무 부장
+5 운영 부장
+4 기획 부장
+6 총무 차장
+3 운영 차장
+2 기획 차장
+1 회원 (부원)
+0 비 로그인
+'''
+
+POSITION_CHOICE = [
+    (12, '이전 회장'),
+    (11, '이전 부회장'),
+    (10, '이전 간부'),
+    (9, '회장'),
+    (8, '부회장'),
+    (7, '서기'),
+    (6, '총무 부장'),
+    (5, '운영 부장'),
+    (4, '기획 부장'),
+    (6, '총무 차장'),
+    (3, '운영 차장'),
+    (2, '기획 차장'),
+    (1, '부원'),
+    (0, '회원'),
+]
+
+
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=255, unique=True, verbose_name="이메일")
     name = models.CharField(max_length=20, null=False, verbose_name="이름")
     student_number = models.IntegerField(unique=True, null=False, verbose_name="학번")
     department = models.CharField(max_length=20, null=False, verbose_name="학과")
-    position = models.IntegerField(null=False, default=0, verbose_name="직책")
+    position = models.IntegerField(null=False, default=0, choices=POSITION_CHOICE, verbose_name="직책")
     join_date = models.DateTimeField(default=now, verbose_name="가입일")
     date_of_birth = models.DateField(null=False, verbose_name="생년월일")
     graduation_date = models.DateField(null=False, verbose_name="졸업(예정)일")
     payment = models.BooleanField(null=False, default=False, verbose_name="회비 납부 여부")
-    profile_thumbnail = models.FilePathField(null=True, verbose_name="프로필 사진")
+    # profile_thumbnail = models.FilePathField(null=True, verbose_name="프로필 사진")
     description = models.CharField(max_length=300, null=True, verbose_name="자기소개")
-    github_url = models.URLField(null=True, verbose_name="깃허브 주소")
-    instagram_url = models.URLField(null=True, verbose_name="인스타그램 주소")
-    website_url = models.URLField(null=True, verbose_name="웹 사이트 주소")
+    github_url = models.URLField(null=True, blank=True, verbose_name="깃허브 주소")
+    instagram_url = models.URLField(null=True, blank=True, verbose_name="인스타그램 주소")
+    website_url = models.URLField(null=True, blank=True, verbose_name="웹 사이트 주소")
     is_active = models.BooleanField(default=True, verbose_name="회원 활성 여부")
     is_admin = models.BooleanField(default=False, verbose_name="관리자 여부")
     is_staff = models.BooleanField(default=False, verbose_name="간부 여부")
