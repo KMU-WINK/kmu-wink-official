@@ -28,7 +28,7 @@
         <div class="information">
             <ul>
                 <li class="name">
-                    {% if item.position is "지도 교수" %}
+                    {% if item.position != "지도 교수" %}
                         {{ item.student_num }}학번
                     {% endif %}
                     {{ item.name }}
