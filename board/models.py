@@ -10,6 +10,8 @@ class Board(models.Model):
     permission = models.IntegerField(null=False, default=0, verbose_name="열람 권한")
     def __str__(self):
         return str(self.name)
+    class Meta:
+        verbose_name_plural = "게시판"
 
 
 class Document(models.Model):
@@ -23,6 +25,8 @@ class Document(models.Model):
     # file = models.FileField()
     def __str__(self):
         return str(self.title)
+    class Meta:
+        verbose_name_plural = "게시물"
 
 class Comment(models.Model):
     post_id = models.ForeignKey(Document, on_delete=models.CASCADE, null=False, verbose_name="게시물 대상")
@@ -33,6 +37,12 @@ class Comment(models.Model):
     modifiy_date = models.DateTimeField(null=True, verbose_name="최근 수정일")
     deleted_date = models.DateTimeField(null=True, verbose_name="삭제일")
     ip = models.GenericIPAddressField(null=True, verbose_name="작성자 IP")
+
+    def __str__(self):
+        return str(self.post_id_id) + '번 글에 남긴 댓글'
+
+    class Meta:
+        verbose_name_plural = "댓글"
 
 
 class Sympathy(models.Model):

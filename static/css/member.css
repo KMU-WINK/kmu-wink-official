@@ -27,5 +27,9 @@
 .member_section .human .human_container .information ul li,
 .member_section .human .human_container .information ul li a {font-family: var(--hansans);}
 
-.btn {padding:10px 15px; background: var(--primary); color:#fff; font-size:14px; transition: .5s;}
+
+.btn {padding:10px 15px; background: var(--primary); color:#fff; font-size:14px; transition: .5s; display:inline-block;}
 .btn:hover {background: var(--primaryhover);}
+
+
+.member_section .human .human_container .information .btn {padding:0 5px; font-size:24px; margin-right:10px;}

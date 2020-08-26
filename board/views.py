@@ -40,7 +40,9 @@ def index(request):
 def board(request, board_name):
     print(board_name) # params 가져오기 -> http://127.0.0.1/test_board
     # 출력 결과 test_board
-    return render(request, 'board_skin/board.html', getBoard(board_name))
+    documents = getBoard(board_name)
+    documents['title'] = documents['board']['information']['name']
+    return render(request, 'board_skin/board.html', documents)
 
 
 # 글쓰기
@@ -57,7 +59,7 @@ def write(request, board_name):
 
     form = DocumentForm()
 
-    return render(request, 'board_skin/write.html', {'form': form})
+    return render(request, 'board_skin/write.html', {'form': form, 'title': '글쓰기'})
 
 
 # 문서 읽기
@@ -81,12 +83,14 @@ def document(request, board_name, document_id):
     if request.user.id: # 회원이다
         rend_data['comment'].update({'form':CommentForm()}) # 회원만 댓글 폼 보이기
 
+    rend_data['title'] = rend_data['document'].title
+
     return render(request, 'board_skin/document.html', rend_data)
 
 
 # 메인페이지
 def main_index(request):
-    return render(request, 'index.html')
+    return render(request, 'index.html', {'title':'국민대학교 소프트웨어융합대학 웹 전공 학술 동아리 WINK'})
 
 
 def sympathy(request, ):

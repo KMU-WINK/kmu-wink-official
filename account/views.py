@@ -56,6 +56,7 @@ def members(request):
         'prev_staff': prev_staff,
         'prev_member': prev_member,
         'profesor':profesor,
+        'title': '팀원 소개',
     })
 
 
@@ -73,6 +74,7 @@ def signup(request):
 
     return render(request, 'signup.html', {
         'form': signup_form,
+        'title': '회원 가입',
     })
 
 @csrf_exempt
@@ -86,6 +88,7 @@ def emoji(request):
         'message': 'ok',
     }, json_dumps_params={'ensure_ascii': True})
 
-def profile(request):
-    pass
-    # signup
+def profile(request, student_number):
+    return render(request, 'mypage.html', {
+
+    })

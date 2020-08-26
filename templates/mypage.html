@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block container %}
+{% include 'component/banner.html' %}
 
-</body>
-</html>
+<div class="container">
+    <div class="form_box">
+        {% include 'form_error.html' %}
+        <form method="post" action="{% url 'signup' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">회원가입</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

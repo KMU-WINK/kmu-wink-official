@@ -3,7 +3,8 @@
 <html lang="kr">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | Web In  Kookmin</title>
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/fonts.css">
     <link rel="stylesheet" href="/static/css/board.css">
@@ -15,7 +16,10 @@
     <header id="main_header">
         <div class="container">
             <h1 class="logo">
-                <a href="/"><img src="/static/assets/logo/wink-white.png" alt="Web in Kookmin"></a>
+                <a href="/">
+                    <img src="/static/assets/logo/wink-white.png" style="visibility: visible; opacity: 1;" alt="Web in Kookmin">
+                    <img src="/static/assets/logo/wink-color.png" style="visibility: hidden; opacity: 0;" alt="Web in Kookmin">
+                </a>
             </h1>
             <nav id="main_menu">
                 <ul>
@@ -29,7 +33,7 @@
                         <a href="#">
                             {{ user.student_number }} {{ user.name }}
                             <ul>
-                                <li><a href="{% url 'profile' student_number='dd' %}"></a></li>
+                                <li><a href="{% url 'profile' student_number=request.user.id %}">마이페이지</a></li>
                                 {% if user.is_staff %}
                                 <li><a href="/admin/" target="_blank">관리자페이지</a></li>
                                 {% endif %}
@@ -61,5 +65,6 @@
 
     <script src="/static/js/time.js"></script>
     <script src="/static/js/emoji.js"></script>
+    <script src="/static/js/script.js"></script>
 </body>
 </html>

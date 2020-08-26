@@ -1,56 +1,8 @@
 <div class="human">
     <div class="human_container">
-        <div class="profile_img"><img src="{{ item.github.avatar_url }}" alt=""></div>
-        <div class="information">
-            <ul>
-                <li class="name">{{ item.student_num }}학번 {{ item.name }}</li>
-
-                {% if item.prev_position %}
-                    <li>{{ item.prev_position }}</li>
-                {% else %}
-                    {% if item.position %}
-                    <li>{{ item.position }}</li>
-                    {% endif %}
-                {% endif %}
-
-
-                {% if item.description %}
-                <li>{{ item.description }}</li>
-                {% endif %}
-
-                {% if item.github_url %}
-                <li>
-                    <a href="{{ item.github_url }}" target="_blank" class="btn">
-                        <i class="xi-github"></i>
-                        GitHub.com
-                    </a>
-                </li>
-                {% endif %}
-
-                {% if item.website_url %}
-                <li>
-                    <a href="{{ item.website_url }}" target="_blank" class="btn">
-                        <i class="xi-home"></i>
-                        개인 웹 사이트
-                    </a>
-                </li>
-                {% endif %}
-
-            </ul>
-        </div>
-    </div>
-    <div class="github">
-        Last contributions : <span class="time" data-time="{{ item.github.updated_at }}"></span>
-        <div class="user_emojis">
-            <ul>
-                {% for emoji in item.emoji %}
-                        <li class="emoji">{{ emoji.content }}</li>
-                {% endfor %}
-            </ul>
-        </div>
         {% if user.is_authenticated %}
-            <div>
-                <button class="btn" onclick="this.parentNode.children[1].style.display='block'">공감 남기기</button>
+            <div class="emoji_btn">
+                <button class="btn" onclick="this.parentNode.children[1].style.display='block'"><i class="xi-emoticon-happy-o"></i></button>
                 <div class="emoji_modal">
                     <h1>WINK EMOJI PICKER</h1>
                     <ul data-user-id="{{ item.id }}">
@@ -71,8 +23,54 @@
                     </div>
                 </div>
             </div>
-
         {% endif %}
+        <div class="profile_img"><img src="{{ item.github.avatar_url }}" alt=""></div>
+        <div class="information">
+            <ul>
+                <li class="name">
+                    {% if item.position is "지도 교수" %}
+                        {{ item.student_num }}학번
+                    {% endif %}
+                    {{ item.name }}
+                </li>
 
+                {% if item.prev_position %}
+                    <li>{{ item.prev_position }}</li>
+                {% else %}
+                {% if item.position %}
+                    <li>{{ item.position }}</li>
+                    {% endif %}
+                {% endif %}
+
+
+                {% if item.description %}
+                <li>{{ item.description }}</li>
+                {% endif %}
+
+                <li>
+                    {% if item.github_url %}
+                    <a href="{{ item.github_url }}" target="_blank" class="btn">
+                        <i class="xi-github"></i>
+                    </a>
+                    {% endif %}
+
+                    {% if item.website_url %}
+                    <a href="{{ item.website_url }}" target="_blank" class="btn">
+                        <i class="xi-home"></i>
+                    </a>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="github">
+        Last contributions : <span class="time" data-time="{{ item.github.updated_at }}"></span>
+        <div class="user_emojis">
+            <ul>
+                {% for emoji in item.emoji %}
+                        <li class="emoji">{{ emoji.content }}</li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 </div>

@@ -87,9 +87,19 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['date_of_birth', 'name', 'student_number', 'department', 'position', 'graduation_date']
 
+    def __str__(self):
+        return str(self.student_number) + ' ' + str(self.name)
+    class Meta:
+        verbose_name_plural = "회원"
+
 
 class Emoji(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='related_user', verbose_name="공감 대상")
     owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='related_owner', verbose_name="공감 소유자")
     content = models.CharField(max_length=100, null=False, verbose_name="공감 내용(이모티콘)")
     date = models.DateTimeField(default=now, verbose_name="공감 일")
+
+    def __str__(self):
+        return str(self.user.name) + '에게 ' + str(self.owner.name) + '이 남긴 이모티콘'
+    class Meta:
+        verbose_name_plural = "공감"

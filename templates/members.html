@@ -4,11 +4,9 @@
         <section class="container member_section">
         <div>
             <h1>지도교수</h1>
-            <div class="card_section">
-                {% for item in profesor %}
-                    {% include 'component/human_card.html' %}
-                {% endfor %}
-            </div>
+            {% for item in profesor %}
+                {% include 'component/human_card.html' %}
+            {% endfor %}
         </div>
     </section>
 

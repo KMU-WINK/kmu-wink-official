@@ -25,10 +25,8 @@ function refresh_time(){
     let times = document.querySelectorAll(".time");
 
     for (let i = 0; i < times.length; i++)
-    {
         times[i].innerHTML = timeForToday(times[i].getAttribute("data-time") * 1000);
-    }
-    console.log(1);
+
 }
 
 refresh_time();

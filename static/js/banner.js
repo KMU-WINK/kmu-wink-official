@@ -7,11 +7,11 @@ const InitialBannersPosition = (banner, afterNode) => {
     for(let i = 0; i < banner.children.length; i++)
     {
         banner.children[i].style.opacity = 0;
-        banner.children[i].style.backgroundSize = '120% auto';
+        // banner.children[i].style.backgroundSize = '120% auto';
     }
     banner.children[0].style.opacity = 1;
     banner.children[1].style.opacity = 1;
-    banner.children[0].style.backgroundSize = '100% auto';
+    // banner.children[0].style.backgroundSize = '100% auto';
 };
 
 const BannerChange = (banner) => {
