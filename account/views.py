@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from .models import User, Emoji
 from .forms import SignUpForm
@@ -88,7 +88,9 @@ def emoji(request):
         'message': 'ok',
     }, json_dumps_params={'ensure_ascii': True})
 
-def profile(request, student_number):
+def profile(request, id):
+    user = get_object_or_404(User, id=id)
+    print(user)
     return render(request, 'mypage.html', {
-
+        'user':user,
     })

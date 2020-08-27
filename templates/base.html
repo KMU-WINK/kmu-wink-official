@@ -33,7 +33,7 @@
                         <a href="#">
                             {{ user.student_number }} {{ user.name }}
                             <ul>
-                                <li><a href="{% url 'profile' student_number=request.user.id %}">마이페이지</a></li>
+                                <li><a href="{% url 'profile' id=request.user.id %}">마이페이지</a></li>
                                 {% if user.is_staff %}
                                 <li><a href="/admin/" target="_blank">관리자페이지</a></li>
                                 {% endif %}

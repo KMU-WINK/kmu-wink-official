@@ -55,9 +55,9 @@ body {
 #main_header #main_menu li a:hover,
 #main_header #main_menu li.active a {color:var(--white);}
 
-#main_header #main_menu li ul {visibility: hidden; opacity: 0; position:absolute;}
+#main_header #main_menu li ul {visibility: hidden; opacity: 0; position:absolute; transition: .3s; line-height:70px;  padding:0 15px;}
 #main_header #main_menu li:hover ul {visibility: visible; opacity: 1;}
-#main_header #main_menu li:hover ul>li {display:block;}
+#main_header #main_menu li ul>li {display:block;}
 
 #main_banner {position:relative; width:100%; height:100vh; }
 #main_banner .banner_cover ,
@@ -203,6 +203,16 @@ body {
 .alert.alert-danger { background: #e1615b;}
 
 .human_container {position:relative;}
+
+.myinfo {
+    display:grid;
+    grid-template-columns: 30% 70%;
+    grid-column-gap: 30px;
+}
+.myinfo>* {font-size:30px; padding:15px 0;}
+.myinfo>*:first-child { text-align: right; font-weight: bold;}
+.myinfo>*:last-child {}
+
 
 .emoji_btn {position:absolute; right:15px;}
 .emoji_btn>.btn {background:none; padding:10px; color:#333; font-size:24px; cursor:pointer;}
