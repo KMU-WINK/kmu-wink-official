@@ -8,10 +8,11 @@ class DateInput(forms.DateInput):
 class SignUpForm(ModelForm):
     class Meta:
         model = User
-        fields = ['email', 'password', 'name', 'student_number', 'date_of_birth', 'graduation_date', 'description', 'github_url']
+        fields = ['email', 'password', 'name', 'student_number', 'date_of_birth', 'graduation_date', 'description', 'github_url', 'website_url', 'profile_thumbnail']
         widgets = {
             'date_of_birth': DateInput(attrs={'type': 'date'}),
             'graduation_date': DateInput(attrs={'type': 'date'}),
+            'password': DateInput(attrs={'type': 'password'}),
         }
 
     def __init__(self, *args, **kwargs):

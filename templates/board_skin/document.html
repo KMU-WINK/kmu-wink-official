@@ -20,11 +20,18 @@
                     {% if document.modifiy_date %}
                         <li>{{ document.modifiy_date }}</li>
                     {% endif %}
-                    <li>{{ document.owner.student_number}} {{ document.owner.name }}</li>
+                    <li>{{ document.owner.student_number|slugify|slice:"2:4"}}학번 {{ document.owner.name }}</li>
                 </ul>
             </div>
             <div class="content">
-                {{ document.content }}
+                {% if document.image1 %}
+                    <img src="/{{ document.image1 }}" alt="">
+                {% endif %}
+
+                {% if document.image2 %}
+                    <img src="/{{ document.image2 }}" alt="">
+                {% endif %}
+                <div>{{ document.content }}</div>
             </div>
         </section>
         <section class="comments">

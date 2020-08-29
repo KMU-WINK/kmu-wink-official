@@ -24,12 +24,14 @@
                 </div>
             </div>
         {% endif %}
-        <div class="profile_img"><img src="{{ item.github.avatar_url }}" alt=""></div>
+        <div class="profile_img">
+            <div style="background-image:url('/{{ item.profile_thumbnail }}');"></div>
+        </div>
         <div class="information">
             <ul>
                 <li class="name">
-                    {% if item.position != "지도 교수" %}
-                        {{ item.student_num }}학번
+                    {% if item.position != 20 %}
+                        {{ item.student_number|slugify|slice:"2:4" }}학번
                     {% endif %}
                     {{ item.name }}
                 </li>
@@ -38,7 +40,7 @@
                     <li>{{ item.prev_position }}</li>
                 {% else %}
                 {% if item.position %}
-                    <li>{{ item.position }}</li>
+                    <li>{{ item.get_position_display }}</li>
                     {% endif %}
                 {% endif %}
 
@@ -63,14 +65,14 @@
             </ul>
         </div>
     </div>
-    <div class="github">
-        Last contributions : <span class="time" data-time="{{ item.github.updated_at }}"></span>
-        <div class="user_emojis">
-            <ul>
-                {% for emoji in item.emoji %}
-                        <li class="emoji">{{ emoji.content }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
+{#    <div class="github">#}
+{#        Last contributions : <span class="time" data-time="{{ item.github.updated_at }}"></span>#}
+{#        <div class="user_emojis">#}
+{#            <ul>#}
+{#                {% for emoji in item.emoji %}#}
+{#                        <li class="emoji">{{ emoji.content }}</li>#}
+{#                {% endfor %}#}
+{#            </ul>#}
+{#        </div>#}
+{#    </div>#}
 </div>

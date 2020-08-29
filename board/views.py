@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 
 from .forms import CommentForm, DocumentForm
@@ -47,8 +47,14 @@ def board(request, board_name):
 
 # 글쓰기
 def write(request, board_name):
+    try:
+        if request.user.position < Board.objects.get(board_code=board_name).write_permission:
+            return redirect('/board/'+board_name)
+    except AttributeError:
+        return redirect('/board/'+board_name)
+
     if request.method == "POST" and request.user.id: # 만약 method가 post 이 경우 & 회원 일 경우
-        form = DocumentForm(request.POST) # 전달받은 값을 폼에 넣어 객체를 만듬
+        form = DocumentForm(request.POST, request.FILES) # 전달받은 값을 폼에 넣어 객체를 만듬
         if form.is_valid(): # 필드들이 각 필드 형식에 맞는가 ?
             post = form.save(commit=False) # 폼 데이터 저장
 

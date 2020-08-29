@@ -72,7 +72,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_of_birth = models.DateField(null=False, verbose_name="생년월일")
     graduation_date = models.DateField(null=False, verbose_name="졸업(예정)일")
     payment = models.BooleanField(null=False, default=False, verbose_name="회비 납부 여부")
-    # profile_thumbnail = models.FilePathField(null=True, verbose_name="프로필 사진")
+    profile_thumbnail = models.ImageField(null=False, default="static/assets/logo/wink-color.png", upload_to="static/images/upload/", verbose_name="프로필 사진")
     description = models.CharField(max_length=300, null=True, verbose_name="자기소개")
     github_url = models.URLField(null=True, blank=True, verbose_name="깃허브 주소")
     instagram_url = models.URLField(null=True, blank=True, verbose_name="인스타그램 주소")

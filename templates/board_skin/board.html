@@ -8,7 +8,9 @@
         </header>
         <section>
             <div>
-                <a href="{% url 'write' board_name=board.information.board_code %}" class="btn primary">글쓰기</a>
+                {% if board.information.write_permission <= user.position %}
+                    <a href="{% url 'write' board_name=board.information.board_code %}" class="btn primary">글쓰기</a>
+                {% endif %}
             </div>
             <table class="board">
                 <thead>
@@ -19,7 +21,7 @@
                 <tbody>
                     {% for item in board.documents %}
                         <tr>
-                            <td>{{ item.id }}</td> <td><a href="{% url 'document' board_name='recruitment' document_id=item.id %}">{{ item.title }}</a></td> <td>{{ item.owner.student_number }} {{ item.owner.name }}</td> <td>{{ item.make_date }}</td>
+                            <td>{{ item.id }}</td> <td><a href="{% url 'document' board_name='recruitment' document_id=item.id %}">{{ item.title }}</a></td> <td>{{ item.owner.student_number|slugify|slice:"2:4" }}학번 {{ item.owner.name }}</td> <td>{{ item.make_date }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>

@@ -14,22 +14,28 @@
 
 .member_section h1 {font-family: var(--hansans); color:var(--black); padding:20px;}
 
-.member_section .human {border-radius: 3px; box-shadow: 1px 1px 3px rgba(0,0,0,.3); transition: .5s;}
-.member_section .human:hover {box-shadow: 1px 1px 30px rgba(0,0,0,.3);}
-.member_section .human .github {padding:0 15px 15px 15px;}
+.human {border-radius: 3px; box-shadow: 1px 1px 3px rgba(0,0,0,.3); transition: .5s;}
+.human:hover {box-shadow: 1px 1px 30px rgba(0,0,0,.3);}
+.human .github {padding:0 15px 15px 15px;}
 
-.member_section .human .human_container {padding:15px;}
-.member_section .human .human_container .profile_img img {height:50px; border-radius: 50px;}
-.member_section .human .human_container {display:flex; flex-direction: row;}
-.member_section .human .human_container .information {margin-left:20px; flex:1;}
-.member_section .human .human_container .information ul .name {font-weight: bold; font-size:24px;}
-.member_section .human .human_container .information ul li {line-height:40px;}
-.member_section .human .human_container .information ul li,
-.member_section .human .human_container .information ul li a {font-family: var(--hansans);}
+.human .human_container {padding:15px;}
+.human .human_container .profile_img div {
+    height:80px;
+    width:80px;
+    border-radius: 50px;
+    background-size:cover;
+    background-position:center center;
+}
+.human .human_container {display:flex; flex-direction: row;}
+.human .human_container .information {margin-left:20px; flex:1;}
+.human .human_container .information ul .name {font-weight: bold; font-size:20px;}
+.human .human_container .information ul li {line-height:40px;}
+.human_container .information ul li,
+.human_container .information ul li a {font-family: var(--hansans);}
 
 
 .btn {padding:10px 15px; background: var(--primary); color:#fff; font-size:14px; transition: .5s; display:inline-block;}
 .btn:hover {background: var(--primaryhover);}
 
 
-.member_section .human .human_container .information .btn {padding:0 5px; font-size:24px; margin-right:10px;}
+.human .human_container .information .btn {padding:0 5px; font-size:24px; margin-right:10px;}

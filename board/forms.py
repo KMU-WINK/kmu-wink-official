@@ -21,7 +21,7 @@ class CommentForm(ModelForm):
 class DocumentForm(ModelForm):
     class Meta:
         model = Document
-        fields = ['title', 'content']
+        fields = ['title', 'content', 'image1', 'image2']
 
     def __init__(self, *args, **kwargs):
         super(DocumentForm, self).__init__(*args, **kwargs)

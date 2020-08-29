@@ -5,7 +5,7 @@
 <div class="container">
     <div class="form_box">
         {% include 'form_error.html' %}
-        <form method="post" action="{% url 'signup' %}">
+        <form method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="btn btn-primary">회원가입</button>
