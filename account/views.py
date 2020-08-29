@@ -6,6 +6,7 @@ import json, requests, emoji
 from datetime import datetime
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import login
 
 # Create your views here.
 
@@ -95,6 +96,7 @@ def profile(request, id):
             post = user.save(commit=False)
             post.set_password(post.password)
             post.save()
+            login(request, user=None,)
 
     user = get_object_or_404(User, id=request.user.id)
     user.password = ''
