@@ -8,6 +8,7 @@
     --nanummyeongjo : 'Nanum Myeongjo', 'serif';
     --nanumbarungothic:'NanumBarunGothic';
     --ibm:'IBMPlexSansKR-Light';
+    --scoredream:'S-CoreDream-1Thin';
     --w:rgb(66, 138, 255);
     --i:rgb(236, 38, 61);
     --n:rgb(242, 170, 24);
@@ -106,19 +107,27 @@ body {
 
 .main_section .container {padding:100px 0;}
 
-.main_section header h1 {
-    font-family: var(--ibm);
+.main_section header h1,
+.main_section .image_article.project .container header h1
+{
+    font-family: var(--hansans);
     font-size:80px;
+    font-weight: 400;
 }
 
 
 
-.section_content h2 {
+.section_content h2,
+.main_section .image_article.project .container h2
+
+{
     font-size:48px;
     font-weight: normal;
     font-family: var(--hansans);
 }
-.section_content p {
+.section_content p,
+.main_section .image_article.project .container p
+{
     font-size:24px;
     line-height:38px;
 }
@@ -129,8 +138,94 @@ body {
     background-repeat:no-repeat;
     background-size:cover;
     background-position:center center;
+}
+
+.main_section .image_article.project {
+    position:relative;
+    height:100vh;
+    background-position:center right;
+
+    background-size:contain;
 
 }
+.main_section .image_article.project .container {
+    position:relative;
+    z-index:9;
+    color:white;
+}
+
+.main_section .image_article.project:after {
+    content: '';
+    position:absolute;
+    left:0;right:0;top:0;bottom:0;
+    background:rgba(0,0,0,.5)
+
+}
+
+.area_view{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+
+}
+.area_view>*>h3 {
+    position:absolute;
+    z-index:10;
+    font-family: var(--hansans);
+    font-size:30px;
+    color:white;
+        text-shadow:1px 1px 20px rgba(0,0,0,.5);
+
+    transition: inherit;
+}
+
+.area_view>* {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size:cover;
+    transform: scale(1,1);
+    height:50vh;
+    position:relative;
+    /*filter: blur(6px);*/
+    transition: .5s;
+    overflow:hidden;
+}
+
+.area_view>*:hover>h3 {
+    text-shadow:1px 1px 20px rgba(255,255,255,.5);
+
+}
+
+.area_view>*:after {
+    content: '';
+	display: block;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.6);
+    transition: inherit;
+}
+.area_view>*:hover:after {
+    background:rgba(0,0,0,0);
+}
+
+.area_view>*:before {
+    content:"";
+    position:absolute; top:0;right:0;bottom:0;left:0;
+    background:inherit;
+    transition:inherit;
+}
+
+.area_view>*:hover:before{
+    transform: scale(1.2);
+}
+
+
+
 
 #sub_banner {
     width:100%;

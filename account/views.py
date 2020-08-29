@@ -93,4 +93,5 @@ def profile(request, id):
     print(user)
     return render(request, 'mypage.html', {
         'user':user,
+        'title':user.name + '님의 정보',
     })
