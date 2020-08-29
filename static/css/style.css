@@ -42,6 +42,10 @@ body {
 #main_header .logo img {vertical-align: middle; height:80px;position:absolute;transition: .5s;}
 #main_header .logo img:last-child {margin-left:8px;position: absolute;}
 
+#main_header .mob_btn {display:none;}
+#main_header .mob_btn>* {position:absolute;right:25px; top:25px; width:30px; height:30px;}
+#main_header .mob_btn>*:last-child {visibility: hidden}
+
 #main_header #main_menu {float:right; line-height:100px;}
 #main_header #main_menu ul {list-style:none;}
 #main_header #main_menu li {
@@ -174,6 +178,7 @@ body {
     font-size:30px;
     color:white;
         text-shadow:1px 1px 20px rgba(0,0,0,.5);
+    text-align:center;
 
     transition: inherit;
 }
@@ -386,8 +391,48 @@ input[type='text']:focus, textarea:focus {
     .section_content h2 {font-size: 24px;}
     .section_content p {font-size:18px;}
 
+    .area_view {grid-template-columns: repeat(1, 1fr)}
+
+    .main_section header h1, .main_section .image_article.project .container header h1
+    {
+        font-size:40px;
+    }
+    .section_content h2, .main_section .image_article.project .container h2{
+        font-size:24px;
+    }
+    .section_content p, .main_section .image_article.project .container p {
+        font-size:16px;
+    }
+    .main_section .image_article.project .container h2,
+    .main_section .image_article.project .container p {
+        padding:30px;
+    }
+    .main_section .image_article.project .container a {margin-left:30px;}
     /* footer */
+    #main_footer .together h1 {padding:15px;}
+    #main_footer .together ul li {padding:30px;}
     #main_footer .together ul li img {height:auto; width:100%;}
+    #main_header .mob_btn {display:block;}
+    #main_header #main_menu {
+        background-color:rgba(0,0,0,.5);
+        position:fixed;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+    }
+    #main_header #main_menu ul {
+        width:70%;
+        background-color:white;
+        position:absolute;
+        right:0;
+        bottom:0;
+        top:0;
+        padding-left:30px;
+    }
+
+    #sub_banner {height:400px;}
+    #sub_banner h1 { font-size:30px;}
 }
 /*@media screen and (min-width: 480px) {*/
 

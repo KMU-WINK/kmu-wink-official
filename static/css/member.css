@@ -39,3 +39,11 @@
 
 
 .human .human_container .information .btn {padding:0 5px; font-size:24px; margin-right:10px;}
+
+
+@media (max-width: 400px)  {
+    .member_section,
+    .member_section .card_section{
+        grid-template-columns: repeat(1, 1fr)
+    }
+}

@@ -1,8 +1,11 @@
+let mainMenu = document.querySelector("#main_menu");
 let menuLinks = document.querySelectorAll("#main_menu > ul > li > a");
 let logo = document.querySelector("#main_header > div > h1 > a");
 let mainHeader = document.querySelector("#main_header");
 let subMenus = document.querySelectorAll("#main_header #main_menu li ul");
 let subMenuLinks = document.querySelectorAll("#main_header #main_menu li ul li a");
+let mobBtn = document.querySelector("#main_header .mob_btn");
+
 
 function setMenuLinksColor(color){
     for (let i = 0; i < menuLinks.length; i++)
@@ -16,6 +19,10 @@ function setChangeLogo(color=false){
     logo.children[1].style.visibility= color ? 'visible' : 'hidden';
     logo.children[0].style.opacity = !color | 0;
     logo.children[1].style.opacity= color | 0;
+    mobBtn.children[0].style.visibility = color ? 'hidden' : 'visible';
+    mobBtn.children[1].style.visibility= color ? 'visible' : 'hidden';
+    mobBtn.children[0].style.opacity = !color | 0;
+    mobBtn.children[1].style.opacity= color | 0;
 }
 
 function setChangeHeader(color=false){
@@ -26,8 +33,19 @@ function setChangeHeader(color=false){
 
     mainHeader.style.backgroundColor = color ? '#fff' : 'transparent';
     mainHeader.style.boxShadow = color ? '0 1px 3px rgba(0, 0, 0, .3)' : '0 1px 3px transparent';
-
 }
+
+mobBtn.addEventListener("click", function(){
+    setMenuLinksColor('#333');
+    mainMenu.style.display='block';
+    document.body.style.overflowY='hidden';
+});
+
+mainMenu.addEventListener("click", function(){
+    mainMenu.style.display='none';
+    document.body.style.overflowY='scroll';
+});
+
 
 window.addEventListener("scroll", function(){
     let mainBanner = document.querySelector("#main_banner");
