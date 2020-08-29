@@ -368,7 +368,7 @@ input[type='text']:focus, textarea:focus {
     background: #f8f8f8;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 768px) {
     .container {width:100%;}
     /*.main_section .container {padding:100px 15px;}*/
     #main_header {height:80px;}
