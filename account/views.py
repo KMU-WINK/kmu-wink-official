@@ -20,12 +20,12 @@ def get_user_profile(username):
 def member_data_fetch(queryset):
     answer = []
     for x in queryset:
-        github = {}
+        # github = {}
         em = Emoji.objects.filter(user=x)
 
-        if x.github_url:
-            github = get_user_profile(x.github_url.split('/')[-1])
-            github['updated_at'] = int(datetime.strptime(github['updated_at'], '%Y-%m-%dT%H:%M:%SZ').timestamp())
+        # if x.github_url:
+        #     github = get_user_profile(x.github_url.split('/')[-1])
+        #     github['updated_at'] = int(datetime.strptime(github['updated_at'], '%Y-%m-%dT%H:%M:%SZ').timestamp())
         answer.append({
             'id': x.id,
             'student_num' : str(x.student_number)[2:4],
@@ -35,7 +35,7 @@ def member_data_fetch(queryset):
             'position': x.get_position_display(),
             'instagram_url': x.instagram_url,
             'website_url': x.website_url,
-            'github': github,
+            'profile_thumbnail': x.profile_thumbnail,
             'emoji': em,
             'prev_position':x.prev_position,
         })
@@ -45,11 +45,11 @@ def members(request):
     from datetime import date
     today = date.today()
 
-    profesor = User.objects.filter(position=20).order_by('-position')
-    staff = User.objects.filter(is_staff=True, position__lt=20).order_by('-position')
-    member = User.objects.filter(is_staff=False, position__lt=20, graduation_date__gte=today).order_by('student_number')
-    prev_staff = User.objects.filter(prev_position__isnull=False).order_by('prev_position')
-    prev_member = User.objects.filter(graduation_date__lte=today, position__lt=20, prev_position__isnull=True).order_by('student_number')
+    profesor = member_data_fetch(User.objects.filter(position=20).order_by('-position'))
+    staff = member_data_fetch(User.objects.filter(is_staff=True, position__lt=20).order_by('-position'))
+    member = member_data_fetch(User.objects.filter(is_staff=False, position__lt=20, graduation_date__gte=today).order_by('student_number'))
+    prev_staff = member_data_fetch(User.objects.filter(prev_position__isnull=False).order_by('prev_position'))
+    prev_member = member_data_fetch(User.objects.filter(graduation_date__lte=today, position__lt=20, prev_position__isnull=True).order_by('student_number'))
 
     return render(request, 'members.html', {
         'staff': staff,
