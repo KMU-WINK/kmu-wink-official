@@ -47,8 +47,8 @@ def members(request):
 
     profesor = User.objects.filter(position=20).order_by('-position')
     staff = User.objects.filter(is_staff=True, position__lt=20).order_by('-position')
-    member = User.objects.filter(is_staff=False, position__lt=20, graduation_date__gte=today, prev_position__isnull=True).order_by('student_number')
-    prev_staff = User.objects.filter(graduation_date__lte=today, position__lt=20, prev_position__isnull=False).order_by('prev_position')
+    member = User.objects.filter(is_staff=False, position__lt=20, graduation_date__gte=today).order_by('student_number')
+    prev_staff = User.objects.filter(prev_position__isnull=False).order_by('prev_position')
     prev_member = User.objects.filter(graduation_date__lte=today, position__lt=20, prev_position__isnull=True).order_by('student_number')
 
     return render(request, 'members.html', {
