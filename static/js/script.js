@@ -43,9 +43,11 @@ mobBtn.addEventListener("click", function(){
 });
 
 mainMenu.addEventListener("click", function(){
-    mainMenu.style.visibility='hidden';
-    mainMenu.style.opacity=0;
-    document.body.style.overflowY='scroll';
+    if(window.innerWidth <= 768){
+        mainMenu.style.visibility='hidden';
+        mainMenu.style.opacity=0;
+        document.body.style.overflowY='scroll';
+    }
 });
 
 
