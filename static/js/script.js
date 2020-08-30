@@ -37,12 +37,14 @@ function setChangeHeader(color=false){
 
 mobBtn.addEventListener("click", function(){
     setMenuLinksColor('#333');
-    mainMenu.style.display='block';
+    mainMenu.style.visibility='visible';
+    mainMenu.style.opacity=1;
     document.body.style.overflowY='hidden';
 });
 
 mainMenu.addEventListener("click", function(){
-    mainMenu.style.display='none';
+    mainMenu.style.visibility='hidden';
+    mainMenu.style.opacity=0;
     document.body.style.overflowY='scroll';
 });
 
