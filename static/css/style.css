@@ -321,7 +321,8 @@ body {
 .emoji_modal {
     display:none;
     position:absolute;
-    width:300px;
+    right:0;
+    width:250px;
     background:#fff; z-index:10;
     box-shadow: 1px 1px 20px rgba(0,0,0,.5);
     padding:15px;
@@ -462,7 +463,7 @@ input[type='text']:focus, textarea:focus {
     input[type='number'],
     input[type='url'],
     input[type='date'] {
-        width:auto;
+        width:85%;
     }
 
     .form_box{

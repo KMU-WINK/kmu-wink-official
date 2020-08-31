@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% block container %}
     {% include 'component/banner.html' %}
-        <section class="container member_section">
-        <div>
-            <h1>지도교수</h1>
+
+    <section class="container">
+        <h1>지도교수</h1>
+        <div class="professor">
             {% for item in profesor %}
                 {% include 'component/human_card.html' %}
             {% endfor %}
