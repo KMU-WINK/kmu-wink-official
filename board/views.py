@@ -33,8 +33,15 @@ def getComments(document_id):
 
 # 게시판 메인페이지
 def index(request):
-
     return render(request, 'board_list.html')
+
+
+def deleteDocument(request, board_name, document_id):
+    post = Document.objects.get(id=document_id)
+    if post.owner == request.user:
+        post.delete()
+
+    return redirect("/board/" + board_name)
 
 
 def board(request, board_name):
