@@ -44,7 +44,6 @@ def member_data_fetch(queryset):
 def members(request):
     from datetime import date
     today = date.today()
-
     professor = member_data_fetch(User.objects.filter(position=20).order_by('student_number'))
     staff = member_data_fetch(User.objects.filter(is_staff=True, position__lt=20).order_by('-position'))
     member = member_data_fetch(User.objects.filter(is_staff=False, position__lt=20, graduation_date__gte=today).order_by('student_number'))
