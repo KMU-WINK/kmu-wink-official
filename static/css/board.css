@@ -4,6 +4,59 @@
 border-collapse: collapse;
 }
 .board thead tr th {height:100px; font-size:24px;}
+
+#gallery_board {
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 30px;
+}
+
+#gallery_board .gallery_card {min-width: 0;}
+
+#gallery_board .gallery_card a {
+    text-decoration:none;
+    color:var(--black);
+}
+
+#gallery_board .gallery_card .gallery_thumbnail {
+    width:100%;
+    padding-top:100%;
+    background-position:center center;
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-color:gray;
+    border-radius: 10px;
+    overflow: hidden;
+    position:relative;
+    transition:.5s;
+
+}
+#gallery_board .gallery_card .gallery_thumbnail:hover {
+    box-shadow: 0px 0px 30px rgba(0,0,0,.3);
+}
+
+#gallery_board .gallery_card .gallery_thumbnail:before {
+    content:"";
+    position:absolute; top:0;right:0;bottom:0;left:0;
+    background:inherit;
+    transition:inherit;
+}
+
+#gallery_board .gallery_card .gallery_thumbnail:hover:before{
+    transform: scale(1.2);
+}
+
+
+#gallery_board .gallery_card .title {
+    font-size:30px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width:100%;
+    font-weight: bold;
+    padding:10px 0;
+}
+
 .board tbody tr td {height:100px; border-bottom: 1px solid #ddd; font-size:24px;}
 
 .document .document_info h1 {font-size:60px; text-align:center;}

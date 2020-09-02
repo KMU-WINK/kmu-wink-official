@@ -3,6 +3,12 @@ from account.models import User
 from django.utils.timezone import now
 from account.models import POSITION_CHOICE
 
+
+BOARD_CHOICE = [
+    (1, '갤러리형 게시판'),
+    (0, '일반 리스트형 게시판'),
+]
+
 # Create your models here.
 class Board(models.Model):
     board_code = models.CharField(max_length=15, unique=True, null=False, verbose_name="게시판 코드")
@@ -10,6 +16,7 @@ class Board(models.Model):
     description = models.CharField(max_length=300, null=False, verbose_name="게시판 설명")
     permission = models.IntegerField(choices=POSITION_CHOICE, null=False, default=0, verbose_name="열람 권한")
     write_permission = models.IntegerField(choices=POSITION_CHOICE, null=False, default=1, verbose_name="쓰기 권한")
+    skin = models.IntegerField(choices=BOARD_CHOICE, null=False, default=0, verbose_name="게시판 스킨")
     def __str__(self):
         return str(self.name)
     class Meta:

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block container %}
+    {% include '../component/banner.html' %}
+    <div class="container">
+        <header>
+            <h1>{{ board.information.name }}</h1>
+            <p>{{ board.information.description }}</p>
+        </header>
+        <section>
+            <div>
+                {% if board.information.write_permission <= user.position %}
+                    <a href="{% url 'write' board_name=board.information.board_code %}" class="btn primary">글쓰기</a>
+                {% endif %}
+            </div>
+            <div id="gallery_board">
+                {% for item in board.documents %}
+                    <div class="gallery_card">
+                        <a href="{% url 'document' board_name='recruitment' document_id=item.id %}">
+                            <div style="background-image:url('/{{ item.image1 }}')" class="gallery_thumbnail"></div>
+                            <div class="title">{{ item.title }}</div>
+                            {{ item.owner.student_number|slugify|slice:"2:4" }}학번 {{ item.owner.name }} {{ item.make_date }}
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+    </div>
+
+{% endblock %}

@@ -49,7 +49,9 @@ def board(request, board_name):
     # 출력 결과 test_board
     documents = getBoard(board_name)
     documents['title'] = documents['board']['information']['name']
-    return render(request, 'board_skin/board.html', documents)
+    board_template = ['board_skin/board.html', 'board_skin/gallery_board.html']
+
+    return render(request, board_template[documents['board']['information']['skin']], documents)
 
 
 # 글쓰기
