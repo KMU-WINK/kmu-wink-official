@@ -16,7 +16,10 @@
                 {% for item in board.documents %}
                     <div class="gallery_card">
                         <a href="{% url 'document' board_name='recruitment' document_id=item.id %}">
-                            <div style="background-image:url('/{{ item.image1 }}')" class="gallery_thumbnail"></div>
+                            <div style="
+                                    background-image:url('{% if item.image1 %}/{{ item.image1 }}{% else %}https://via.placeholder.com/500{% endif %}')"
+                                 class="gallery_thumbnail"></div>
+
                             <div class="title">{{ item.title }}</div>
                             {{ item.owner.student_number|slugify|slice:"2:4" }}학번 {{ item.owner.name }} {{ item.make_date }}
                         </a>

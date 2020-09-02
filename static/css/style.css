@@ -470,13 +470,6 @@ input[type='text']:focus, textarea:focus {
         width:100%;
     }
 
-    .board tr th:nth-child(1),
-    .board tr td:nth-child(1),
-    .board tr th:nth-child(4),
-    .board tr td:nth-child(4)
-    {
-        display:none
-    }
 
 
 }

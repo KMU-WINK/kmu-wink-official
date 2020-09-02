@@ -9,6 +9,7 @@ border-collapse: collapse;
     display:grid;
     grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 30px;
+    grid-row-gap: 30px;
 }
 
 #gallery_board .gallery_card {min-width: 0;}
@@ -77,3 +78,25 @@ border-collapse: collapse;
 .anonymous_msg {font-size:30px; text-align: center;}
 
 .board_section {margin-top:120px; border-top:1px solid #ddd;}
+
+@media screen and (max-width: 768px) {
+    .board tr th:nth-child(1),
+    .board tr td:nth-child(1),
+    .board tr th:nth-child(4),
+    .board tr td:nth-child(4)
+    {
+        display:none
+    }
+
+    .container header {padding:15px;}
+    .btn {margin-left:15px;}
+
+    #gallery_board {
+        padding:15px;
+        display:grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-column-gap: 30px;
+    }
+}
+
+
