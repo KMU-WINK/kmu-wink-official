@@ -1,11 +1,13 @@
 from django.forms import ModelForm
 from .models import User
 from django import forms
+from captcha.fields import CaptchaField
 
 class DateInput(forms.DateInput):
     input_type = 'date'
 
 class SignUpForm(ModelForm):
+    captcha = CaptchaField()
     class Meta:
         model = User
         fields = ['email', 'password', 'name', 'student_number', 'date_of_birth', 'graduation_date', 'description', 'github_url', 'website_url', 'profile_thumbnail']
