@@ -97,6 +97,12 @@ border-collapse: collapse;
         grid-template-columns: repeat(1, 1fr);
         grid-column-gap: 30px;
     }
+
+    .document .content {
+        max-width:100%;
+        overflow: hidden;
+        word-break:break-word;
+    }
 }
 
 
