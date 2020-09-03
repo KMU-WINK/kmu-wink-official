@@ -385,6 +385,11 @@ input[type='text']:focus, textarea:focus {
     line-height: 2em;
 }
 
+.easter {position:fixed; left:100%; transition: 5s; z-index:999; top:0; bottom:0; width:200%;}
+.easter div {
+    position:absolute;
+}
+
 @media screen and (max-width: 768px) {
     .container {width:100%;
     /*overflow-x:hidden;*/

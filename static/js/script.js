@@ -72,15 +72,31 @@ window.addEventListener("scroll", function(){
         setChangeHeader(false);
 
     }
+});
 
-    // for(let i = menu_item.length - 1; i >= 0; i--){
-    //     let ids = $(menu_item[i]).attr("data-content");
-    //     let top = $("#" + ids).offset().top;
-    //     if (window.scrollY + 200 >= top){
-    //         $("#main_header a").removeClass("active")
-    //         $("a[data-content='" + ids + "']").addClass("active");
-    //
-    //         break;
-    //     }
-    // }
+
+/* 재미 */
+let easter = document.querySelector(".easter");
+let history = "";
+let colorSet = ['rgb(66, 138, 255)', 'rgb(236, 38, 61)', 'rgb(242, 170, 24)', 'rgb(65, 224, 37)'];
+
+for(let i = 0; i < 100; i++)
+{
+    let winkNode = document.createElement("div");
+    winkNode.appendChild(document.createTextNode("WINK"));
+    winkNode.style.left = Math.floor(Math.random() * 100 + 1) + "%";
+    winkNode.style.top = Math.floor(Math.random() * 100 + 1) + "%";
+    winkNode.style.fontSize = Math.floor(Math.random() * 50 + 1) + "px";
+    winkNode.style.color = colorSet[Math.floor(Math.random() * 4)];
+    easter.appendChild(winkNode);
+}
+
+
+window.addEventListener("keypress", function(e){
+    history += e.key;
+    if(history.indexOf('kmuwink') != -1){
+        easter.style.left = '-250%';
+        console.log("😉PEEKABOO WINK😉");
+        history = '';
+    }
 });
