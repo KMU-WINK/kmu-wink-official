@@ -36,13 +36,19 @@
                     {{ item.name }}
                 </li>
 
-                {% if item.prev_position %}
-                    <li>{{ item.prev_position }}</li>
-                {% else %}
-                {% if item.position %}
-                    <li>{{ item.position }}</li>
+                <li>
+                {% if item.prev_member %}
+                    {% if item.prev_position %}
+                        {{ item.prev_position }}
+                    {% else %}
+                        {% if item.position %}
+                            {{ item.position }}
+                        {% endif %}
                     {% endif %}
+                {% else %}
+                    {{ item.position }}
                 {% endif %}
+                </li>
 
 
                 {% if item.description %}
