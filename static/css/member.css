@@ -4,6 +4,9 @@
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 50px;
 }
+.member_section.row_align {
+    grid-template-columns: repeat(1, 1fr);
+}
 
 .professor {
     display: grid;
@@ -19,8 +22,12 @@
     grid-column-gap: 30px;
     grid-row-gap: 30px;
 }
+.member_section.row_align .card_section{
+    grid-template-columns: repeat(4, 1fr);
 
-.member_section h1 {font-family: var(--hansans); color:var(--black); padding:20px;}
+}
+
+.member_section h1, .professor_section h1 {font-family: var(--hansans); color:var(--black); padding:20px;}
 
 .human {border-radius: 3px; box-shadow: 1px 1px 3px rgba(0,0,0,.3); transition: .5s;}
 .human:hover {box-shadow: 1px 1px 30px rgba(0,0,0,.3);}

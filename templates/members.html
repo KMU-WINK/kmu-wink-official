@@ -2,7 +2,7 @@
 {% block container %}
     {% include 'component/banner.html' %}
 
-    <section class="container">
+    <section class="container professor_section">
         <h1>지도교수</h1>
         <div class="professor">
             {% for item in profesor %}
@@ -11,20 +11,11 @@
         </div>
     </section>
 
-    <section class="container member_section">
+    <section class="container member_section row_align">
         <div>
-            <h1>간부진</h1>
+            <h1>회장단</h1>
             <div class="card_section">
-                {% for item in staff %}
-                    {% include 'component/human_card.html' %}
-                {% endfor %}
-            </div>
-        </div>
-
-        <div>
-            <h1>부원</h1>
-            <div class="card_section">
-                {% for item in member %}
+                {% for item in presidency %}
                     {% include 'component/human_card.html' %}
                 {% endfor %}
             </div>
@@ -33,15 +24,57 @@
 
     <section class="container member_section">
         <div>
-            <h1>역대 회장단</h1>
+            <h1>총무부</h1>
             <div class="card_section">
-                {% for item in prev_staff %}
+                {% for item in money %}
                     {% include 'component/human_card.html' %}
                 {% endfor %}
 
             </div>
         </div>
 
+        <div>
+            <h1>운영부</h1>
+            <div class="card_section">
+                {% for item in power %}
+                    {% include 'component/human_card.html' %}
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+    <section class="container member_section">
+        <div>
+            <h1>기획부</h1>
+            <div class="card_section">
+                {% for item in plan %}
+                    {% include 'component/human_card.html' %}
+                {% endfor %}
+
+            </div>
+        </div>
+        <div>
+            <h1>지원부</h1>
+            <div class="card_section">
+                {% for item in support %}
+                    {% include 'component/human_card.html' %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="container member_section row_align">
+        <div>
+            <h1>동아리 부원</h1>
+            <div class="card_section">
+                {% for item in member %}
+                    {% include 'component/human_card.html' %}
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+    <section class="container member_section row_align">
         <div>
             <h1>졸업생 선배님들</h1>
             <div class="card_section">
