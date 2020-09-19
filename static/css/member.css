@@ -59,6 +59,7 @@
 @media (max-width: 768px)  {
     .member_section,
     .member_section .card_section,
+    .member_section.row_align .card_section,
     .professor
     {
         grid-template-columns: repeat(1, 1fr)
