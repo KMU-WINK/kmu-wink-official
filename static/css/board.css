@@ -69,6 +69,13 @@ border-collapse: collapse;
 .document .content {padding:50px 0; font-size:20px;}
 .document .content img {max-width:100%;}
 .comments {}
+.comments .comment_title {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.comments .comment_btn {display: flex;}
+.comments .comment_btn .comment_edit_btn {margin-right : 10px}
 .comments .comment_counter {font-size:40px; padding:15px 0;}
 .comments .comment {border:1px solid #ddd; border-left:none; border-right:none; padding:30px 0;}
 .comments .comment .commenter {font-size:28px;}
