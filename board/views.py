@@ -35,6 +35,12 @@ def getComments(document_id):
 
     return comments
 
+def deleteComments(request, board_name , document_id, comment_id):
+    comments = Comment.objects.get(id=comment_id)
+    if comments.owner == request.user:
+        comments.delete()
+
+    return redirect("/board/" + str(board_name) + "/" + str(document_id))
 
 # 게시판 메인페이지
 def index(request):

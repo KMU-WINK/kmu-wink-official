@@ -45,7 +45,7 @@
                         <div class="commenter">{{ item.owner.student_number }} {{ item.owner.name }}</div>
                         <div class="comment_btn">
                             <a href="" class="btn comment_edit_btn">수정하기</a>
-                            <a href="" class="btn comment_del_btn">삭제하기</a>
+                            <a href="{% url 'deleteComments' board_name=board.information.board_code document_id=document.id comment_id=item.id %}" class="btn comment_del_btn">삭제하기</a>
                         </div>
                     </div>
 
