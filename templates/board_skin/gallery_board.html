@@ -15,7 +15,7 @@
             <div id="gallery_board">
                 {% for item in board.documents %}
                     <div class="gallery_card">
-                        <a href="{% url 'document' board_name='recruitment' document_id=item.id %}">
+                        <a href="{% url 'document' board_name=board.information.board_code document_id=item.id %}">
                             <div style="
                                     background-image:url('{% if item.image1 %}/{{ item.image1 }}{% else %}https://via.placeholder.com/500{% endif %}')"
                                  class="gallery_thumbnail"></div>
