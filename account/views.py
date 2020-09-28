@@ -105,10 +105,9 @@ def profile(request, id):
     user.password = ''
     form = SignUpForm(instance=user)
 
-
     return render(request, 'profile.html', {
-        'user':user,
-        'item':user,
-        'title':user.name + '님의 정보',
+        'user': user,
+        'information': member_data_fetch([user]),
+        'title': user.name + '님의 정보',
         'form': form,
     })
