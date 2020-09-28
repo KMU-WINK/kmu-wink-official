@@ -17,7 +17,7 @@ def get_user_profile(username):
     return json.loads(requests.get(API_HOST + username, headers=headers).text)
 
 
-def member_data_fetch(queryset):
+def member_data_fetch(queryset, display_prev_position=False):
     answer = []
     for x in queryset:
         # github = {}
@@ -37,27 +37,31 @@ def member_data_fetch(queryset):
             'website_url': x.website_url,
             'profile_thumbnail': x.profile_thumbnail,
             'emoji': em,
-            'prev_position':x.prev_position,
+            'prev_position': x.prev_position,
+            'display_prev_position': display_prev_position,
         })
     return answer
 
 def members(request):
     from datetime import date
     today = date.today()
-    professor = member_data_fetch(User.objects.filter(position=20).order_by('student_number'))
-    staff = member_data_fetch(User.objects.filter(is_staff=True, position__lt=20).order_by('-position'))
-    member = member_data_fetch(User.objects.filter(is_staff=False, position__lt=20, graduation_date__gte=today).order_by('student_number'))
-    prev_staff = member_data_fetch(User.objects.filter(prev_position__isnull=False).order_by('-position', 'prev_position'))
-    prev_member = member_data_fetch(User.objects.filter(graduation_date__lte=today, position__lt=20, prev_position__isnull=True).order_by('student_number'))
+    member_data = {
+        'professor': member_data_fetch(User.objects.filter(position=20).order_by('student_number')),
+        'presidency': member_data_fetch(User.objects.filter(is_staff=True, position__gte=11, position__lt=20).order_by('-position')),
+        'money': member_data_fetch(
+            User.objects.filter(is_staff=True, position__gte=9, position__lte=10).order_by('-position')),
+        'power': member_data_fetch(
+            User.objects.filter(is_staff=True, position__gte=7, position__lte=8).order_by('-position')),
+        'plan': member_data_fetch(
+            User.objects.filter(is_staff=True, position__gte=5, position__lte=6).order_by('-position')),
+        'support': member_data_fetch(
+            User.objects.filter(is_staff=True, position__gte=2, position__lte=4).order_by('-position')),
+        'member': member_data_fetch(User.objects.filter(is_staff=False, position__lt=20, graduation_date__gte=today).order_by('student_number')),
+        'prev_member': member_data_fetch(User.objects.filter(graduation_date__lte=today, position__lt=20).order_by('-position', 'student_number'), display_prev_position=True),
+        'title': '동아리 구성원 소개'
+    }
 
-    return render(request, 'members.html', {
-        'staff': staff,
-        'member': member,
-        'prev_staff': prev_staff,
-        'prev_member': prev_member,
-        'profesor':professor,
-        'title': '팀원 소개',
-    })
+    return render(request, 'members.html', member_data)
 
 
 def signup(request):
