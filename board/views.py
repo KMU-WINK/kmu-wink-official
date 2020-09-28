@@ -36,11 +36,30 @@ def getComments(document_id):
     return comments
 
 def deleteComments(request, board_name , document_id, comment_id):
-    comments = Comment.objects.get(id=comment_id)
-    if comments.owner == request.user:
-        comments.delete()
+    comment = Comment.objects.get(id=comment_id)
+    if comment.owner == request.user:
+        comment.delete()
 
     return redirect("/board/" + str(board_name) + "/" + str(document_id))
+
+def updateComments(request, board_name , document_id, comment_id):
+    comment = Comment.objects.get(id=comment_id)
+
+    if  comment.owner != request.user:
+        return redirect("/board/" + str(board_name) + "/" + str(document_id))
+
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST, instance=comment)
+        if comment_form.is_valid():
+            comment_form.save()
+        return redirect("/board/" + str(board_name) + "/" + str(document_id))
+    
+    else:
+        comment_form = CommentForm(instance=comment)
+        context = {
+            'comment_form':comment_form
+        }
+    return render(request, 'board_skin/document.html', context)
 
 # 게시판 메인페이지
 def index(request):
