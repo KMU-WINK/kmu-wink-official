@@ -4,7 +4,9 @@
 
 
 <div class="container">
-    {% include 'component/human_card.html' %}
+    {% for item in information %}
+        {% include 'component/human_card.html' %}
+    {% endfor %}
     <div class="form_box">
         {% include 'form_error.html' %}
         <form method="post" action="{% url 'profile' id=user.id %}" enctype="multipart/form-data">
