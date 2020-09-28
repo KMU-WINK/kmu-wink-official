@@ -2,6 +2,7 @@ from django.db import models
 from account.models import User
 from django.utils.timezone import now
 from account.models import POSITION_CHOICE
+from ckeditor.fields import RichTextField
 
 
 BOARD_CHOICE = [
@@ -26,7 +27,8 @@ class Board(models.Model):
 class Document(models.Model):
     board = models.ForeignKey(Board, on_delete=models.CASCADE, null=False, verbose_name="게시판")
     title = models.CharField(max_length=100, null=False, verbose_name="게시물 제목")
-    content = models.TextField(max_length=5000, null=False, verbose_name="본문")
+    content = RichTextField()
+    #content = models.TextField(max_length=5000, null=False, verbose_name="본문")
     make_date = models.DateTimeField(default=now, verbose_name="작성일")
     modifiy_date = models.DateTimeField(null=True, blank=True, verbose_name="최근 수정일")
     deleted_date = models.DateTimeField(null=True, blank=True, verbose_name="삭제일")
