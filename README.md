@@ -7,6 +7,9 @@
 ---
 본 웹 사이트는 python django를 기반으로 하는 WINK 공식 웹 사이트이다. 본 웹 사이트는 동아리 내 정보 공유 및 프로젝트 성과 기록, 스터디 자료실, 동아리 소개를 목적으로 한다.
 
+
+
+
 ## 업무 진행 방식
 
 ### master branch
@@ -51,39 +54,47 @@ issue가 생겼을 때의 작업 과정은 다음과 같습니다.
 <img align="left" width="165" height="165" src="https://wink.kookmin.ac.kr/static/images/upload/ACF13837-13AE-4D45-878D-232B94553B24_1_105_c_lgyEbPJ.jpeg"></img>
 ```
 
+
 17학번 이종휘
 
 Role : 프로젝트 매니저, 백엔드 프로그래밍, 디자인
 GitHub : https://github.com/bell2lee
+
 
 ```
 
 <img align="left" width="165" height="165" src="https://wink.kookmin.ac.kr/static/images/upload/beauty_20190608195952.jpg"></img>
 ```
 
+
 15학번 송준호
 
 Role : 백엔드 프로그래밍, 퍼블리싱, 프로덕트 테스터
 GitHub : https://github.com/Song-Joonho
+
 
 ```
 
 <img align="left" width="165" height="165" src="https://wink.kookmin.ac.kr/static/images/upload/29365057.jpeg"></img>
 ```
 
+
 17학번 김규리
 
 Role : 백엔드 프로그래밍, 퍼블리싱, 디자인
 GitHub : https://github.com/kimgyuri
+
 
 ```
 
 <img align="left" width="165" height="165" src="https://wink.kookmin.ac.kr/static/images/upload/34D1B7FD-CB8E-428E-84E1-BC27E3F47B48.png"></img>
 ```
 
+
 18학번 정소원
 Role : 백엔드 프로그래밍, 퍼블리싱, 디자인, 기획
 GitHub : https://github.com/sowish23
+
 
 ```
 
