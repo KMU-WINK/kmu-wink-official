@@ -5,8 +5,11 @@
 <img align="left" width="180" height="180" src="https://wink.kookmin.ac.kr/static/assets/logo/wink-color.png"></img>
 **프로젝트 명 : WINK 공식 웹 사이트(kmu-wink-official)**
 ---
-본 웹 사이트는 python django를 기반으로 하는 WINK 공식 웹 사이트이다. 본 웹 사이트는 동아리 내 정보 공유 및 프로젝트 성과 기록, 스터디 자료실, 동아리 소개를 목적으로 한다.
+본 웹 사이트는 python django를 기반으로 하는 WINK 공식 웹 사이트이다.
 
+본 웹 사이트는 동아리 내 정보 공유 및 프로젝트 성과 기록, 스터디 자료실, 동아리 소개를 목적으로 한다.
+
+본 웹 사이트는 지속적으로 유지보수를 위한 개발팀인 아래 팀원들과 함께한다.
 
 
 
