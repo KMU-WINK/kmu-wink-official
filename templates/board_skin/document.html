@@ -16,8 +16,6 @@
             <div class="document_info">
                 {% if request.user == document.owner %}
                     <a href="{% url 'delete' board_name=board.information.board_code document_id=document.id %}" class="btn">삭제</a>
-                {% endif %}
-                {% if request.user == document.owner %}
                     <a href="{% url 'update' board_name=board.information.board_code document_id=document.id %}" class="btn">수정하기</a>
                 {% endif %}
                 <h1><a href="{% url 'document' board_name=board.information.board_code document_id=document.id %}">{{ document.title }}</a></h1>
