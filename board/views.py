@@ -50,7 +50,7 @@ def deleteDocument(request, board_name, document_id):
 
 def updateDocument(request, board_name, document_id ):
     post = Document.objects.get(id=document_id)
-    if request.method == "POST" and request.user.id :
+    if request.method == "POST" and request.user.id and post.owner == request.user:
         form = DocumentForm(request.POST, instance=post)
         if form.is_valid():
             post = form.save(commit=False)  # 폼 데이터 저장
