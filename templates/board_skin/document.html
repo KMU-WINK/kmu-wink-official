@@ -42,9 +42,35 @@
             <div class="comment_counter">댓글 {{ comment.comments.count }}개</div>
             {% for item in comment.comments %}
                 <article class="comment">
-                    <div class="commenter">{{ item.owner.student_number }} {{ item.owner.name }}</div>
+                    <div class="comment_title">
+                        <div class="commenter">{{ item.owner.student_number }} {{ item.owner.name }}</div>
+                        {% if request.user == item.owner %}
+                            <div class="comment_btn">
+                                <div onclick="showEditBtn({{forloop.counter0}});" class="edit_btn">
+                                    <a class="btn comment_edit_btn">수정하기</a>
+                                </div>
+                                <div>
+                                    <a href="{% url 'deleteComments' board_name=board.information.board_code document_id=document.id comment_id=item.id %}" class="btn comment_del_btn">삭제하기</a>
+                                </div>
+                            </div>   
+                        {% else %}
+                            <div class="edit_btn"></div>
+                        {% endif %}
+                    </div>
 
-                    <div class="content">{{ item.content }}</div>
+                    <div class="content comment_content">
+                        {{ item.content }}
+                    </div>
+                    <div class="comment_edit">
+                        <form method="POST" action="{% url 'updateComments' board_name=board.information.board_code document_id=document.id comment_id=item.id %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="text" name="content" value="{{ item.content }}"/>
+                            <div>
+                                <a href="{% url 'updateComments' board_name=board.information.board_code document_id=document.id comment_id=item.id %}"><button type="submit" class="btn comment_edit_btn">수정완료</button></a>
+                            </div>
+                        </form>
+                    </div>
+
                     {{ item.make_date }}
                 </article>
             {% endfor %}
@@ -80,5 +106,15 @@
         </section>
 
     </div>
+    <script>
+        var editForm = document.getElementsByClassName('comment_edit')
+        var content = document.getElementsByClassName('comment_content')
+        var btn = document.getElementsByClassName('edit_btn')
+        function showEditBtn(i) {
+            editForm[i].style.display = 'block';
+            content[i].style.display = 'none';
+            btn[i].style.display = 'none';
+        }
+    </script>
 
 {% endblock %}
