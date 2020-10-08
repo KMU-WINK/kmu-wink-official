@@ -23,7 +23,7 @@ def getBoard(board_name):
     return  {
         'board': {
             'information': board_information,
-            'documents': documents,
+            'documents': documents
         }
     }
 
@@ -72,6 +72,21 @@ def deleteDocument(request, board_name, document_id):
         post.delete()
 
     return redirect("/board/" + board_name)
+
+def updateDocument(request, board_name, document_id ):
+    post = Document.objects.get(id=document_id)
+    if request.method == "POST" and request.user.id and post.owner == request.user:
+        form = DocumentForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)  # 폼 데이터 저장
+
+            # 서버측에서 처리할 것 들
+            post.board = Board.objects.get(board_code=board_name)  # board 는 code 로 가져오기에 해당 객체를 가져와 사용
+            post.owner_id = request.user.id  # 명시적으로 owner 필드(뽀링키) 뒤에 _id를 붙여 id 번호를 사용할 수 있음.
+            post.save()  # 저장
+    else:
+        form = DocumentForm(instance=post)
+    return render(request, 'board_skin/write.html', {'form': form, 'title': '수정하기'})
 
 
 def board(request, board_name):
