@@ -4,5 +4,3 @@ db.sqlite3
 /.idea/
 /*/migrations
 /static/
-/*/__pycache__/*
-/__pycache__/
