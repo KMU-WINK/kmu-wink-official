@@ -92,6 +92,7 @@ def emoji(request):
         'message': 'ok',
     }, json_dumps_params={'ensure_ascii': True})
 
+
 def profile(request, id):
     if request.method == "POST":
         user = SignUpForm(request.POST, request.FILES, instance=request.user)
@@ -111,3 +112,7 @@ def profile(request, id):
         'title': user.name + '님의 정보',
         'form': form,
     })
+
+
+def find_password(request):
+    return render(request, 'find_password.html', {})
