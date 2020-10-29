@@ -67,6 +67,8 @@ def index(request):
 
 
 def deleteDocument(request, board_name, document_id):
+    if not request.user.is_authenticated:
+        return redirect('/member/login/')
     post = Document.objects.get(id=document_id)
     if post.owner == request.user:
         post.delete()
@@ -74,6 +76,8 @@ def deleteDocument(request, board_name, document_id):
     return redirect("/board/" + board_name)
 
 def updateDocument(request, board_name, document_id ):
+    if not request.user.is_authenticated:
+        return redirect('/member/login/')
     post = Document.objects.get(id=document_id)
     if request.method == "POST" and request.user.id and post.owner == request.user:
         form = DocumentForm(request.POST, instance=post)
@@ -134,7 +138,8 @@ def write(request, board_name):
 
 # 문서 읽기
 def document(request, board_name, document_id):
-
+    if (not request.user.is_authenticated) and (board_name=='study'):
+        return redirect('/member/login/')
     if request.method == "POST" and request.user.id: # 만약 method가 post 이 경우 & 회원 일 경우
         form = CommentForm(request.POST) # 전달받은 값을 폼에 넣어 객체를 만듬
         if form.is_valid(): # 필드들이 각 필드 형식에 맞는가 ?
