@@ -35,7 +35,11 @@
                 {% if document.image2 %}
                     <img src="/{{ document.image2 }}" alt="">
                 {% endif %}
-                <div>{{ document.content|linebreaksbr }}</div>
+                <div>
+                    {% with content=document.content|safe %}
+                    {{content|linebreaksbr}}
+                    {% endwith %}
+                </div>
             </div>
         </section>
         <section class="comments">
