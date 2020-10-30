@@ -113,6 +113,3 @@ def profile(request, id):
         'form': form,
     })
 
-
-def find_password(request):
-    return render(request, 'find_password.html', {})
