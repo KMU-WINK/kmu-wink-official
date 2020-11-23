@@ -86,6 +86,7 @@ def write(request, board_name):
             post.board = Board.objects.get(board_code=board_name) # board 는 code 로 가져오기에 해당 객체를 가져와 사용
             post.owner_id = request.user.id # 명시적으로 owner 필드(뽀링키) 뒤에 _id를 붙여 id 번호를 사용할 수 있음.
             post.save() # 저장
+            return redirect('/board/'+board_name)
 
     form = DocumentForm()
 
