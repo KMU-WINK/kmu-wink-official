@@ -138,7 +138,7 @@ def write(request, board_name):
 
 # 문서 읽기
 def document(request, board_name, document_id):
-    if (not request.user.is_authenticated) and (board_name=='study'):
+    if request.user.position < Board.objects.get(board_code=board_name).permission:
         return redirect('/member/login/')
     if request.method == "POST" and request.user.id: # 만약 method가 post 이 경우 & 회원 일 경우
         form = CommentForm(request.POST) # 전달받은 값을 폼에 넣어 객체를 만듬
